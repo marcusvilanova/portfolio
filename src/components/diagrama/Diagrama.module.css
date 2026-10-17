@@ -1,0 +1,162 @@
+.diagrama {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--fonte-texto);
+}
+
+/* ---- Arestas ---- */
+
+.aresta {
+  opacity: 0;
+  transition: opacity var(--normal) var(--ease-saida);
+}
+
+.aresta.visivel {
+  opacity: 1;
+}
+
+.linha {
+  fill: none;
+  stroke: var(--tinta-fraca);
+  stroke-width: 1.4;
+  transition: stroke var(--rapido) ease, stroke-width var(--rapido) ease;
+}
+
+.retorno .linha {
+  stroke-dasharray: 5 5;
+}
+
+.ativa .linha {
+  stroke: var(--sinal);
+  stroke-width: 2.2;
+}
+
+.seta {
+  fill: var(--tinta-fraca);
+}
+
+.setaAtiva {
+  fill: var(--sinal);
+}
+
+.pacote {
+  fill: var(--sinal);
+  stroke: var(--papel);
+  stroke-width: 2;
+}
+
+.rotuloAresta {
+  font-family: var(--fonte-mono);
+  font-size: 11px;
+  fill: var(--tinta-suave);
+  paint-order: stroke;
+  stroke: var(--papel);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+.ativa .rotuloAresta {
+  fill: var(--sinal);
+}
+
+/* ---- Nós ---- */
+
+.no {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--normal) var(--ease-saida);
+}
+
+.no.visivel {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.corpo {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(8px) scale(0.96);
+  transition: transform var(--normal) var(--ease-saida);
+}
+
+.visivel .corpo {
+  transform: none;
+}
+
+.caixa {
+  stroke-width: 1.4;
+  transition: stroke-width var(--rapido) ease, filter var(--rapido) ease;
+}
+
+.rotuloNo {
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--tinta);
+}
+
+.subNo {
+  font-family: var(--fonte-mono);
+  font-size: 11px;
+  fill: var(--tinta-suave);
+}
+
+.entrada .caixa {
+  fill: var(--no-entrada);
+  stroke: var(--no-entrada-borda);
+}
+
+.llm .caixa {
+  fill: var(--no-llm);
+  stroke: var(--no-llm-borda);
+}
+
+.regra .caixa {
+  fill: var(--no-regra);
+  stroke: var(--no-regra-borda);
+}
+
+.dados .caixa {
+  fill: var(--no-dados);
+  stroke: var(--no-dados-borda);
+}
+
+.ferramenta .caixa {
+  fill: var(--no-ferramenta);
+  stroke: var(--no-ferramenta-borda);
+}
+
+.saida .caixa {
+  fill: var(--no-saida);
+  stroke: var(--no-saida-borda);
+}
+
+.saida .rotuloNo,
+.saida .subNo {
+  fill: var(--no-saida-texto);
+}
+
+/* Nó do passo atual: borda mais grossa e uma faixa de sinal. */
+.ativo .caixa {
+  stroke-width: 2.6;
+}
+
+.selecionado .caixa {
+  stroke: var(--sinal);
+  stroke-width: 2.6;
+}
+
+.interativo {
+  cursor: pointer;
+  outline: none;
+}
+
+.interativo:hover .caixa,
+.interativo:focus-visible .caixa {
+  stroke: var(--sinal);
+}
+
+.interativo:focus-visible .caixa {
+  stroke-width: 3;
+}

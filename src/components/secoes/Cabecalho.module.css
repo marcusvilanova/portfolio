@@ -1,0 +1,55 @@
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--linha);
+  background: color-mix(in srgb, var(--papel) 86%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 56px;
+}
+
+.marca {
+  font-family: var(--fonte-mono);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.marca span {
+  color: var(--sinal);
+}
+
+.menu {
+  display: flex;
+  gap: clamp(12px, 2vw, 28px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
+
+.menu a:hover {
+  color: var(--sinal);
+}
+
+@media (max-width: 640px) {
+  .menu li:nth-child(n + 3) {
+    display: none;
+  }
+}

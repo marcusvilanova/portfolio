@@ -1,0 +1,95 @@
+.secao {
+  padding: var(--secao) 0;
+  border-top: 1px solid var(--linha);
+}
+
+.lista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--linha);
+  border: 1px solid var(--linha);
+}
+
+/* O primeiro projeto (o Challenge, mais completo) ocupa a linha inteira. */
+.item:first-child {
+  grid-column: 1 / -1;
+}
+
+.item {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  padding: clamp(20px, 3vw, 36px);
+  background: var(--papel-elevado);
+}
+
+.cabeca {
+  display: grid;
+  gap: 6px;
+}
+
+.cabeca h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+}
+
+.resumo {
+  color: var(--tinta-suave);
+  max-width: 70ch;
+}
+
+.topologia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--fonte-mono);
+  font-size: 13px;
+}
+
+.topologia li {
+  position: relative;
+  padding: 6px 10px;
+  border: 1px solid var(--no-dados-borda);
+  background: var(--no-dados);
+  border-radius: 2px;
+}
+
+/* A seta fica no vão entre as caixas, inclusive quando a cadeia quebra de linha. */
+.topologia li + li {
+  margin-left: 18px;
+}
+
+.topologia li + li::before {
+  content: '→';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sinal);
+}
+
+.rodape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.link {
+  font-family: var(--fonte-mono);
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

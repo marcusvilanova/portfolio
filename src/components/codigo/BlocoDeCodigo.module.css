@@ -1,0 +1,80 @@
+.bloco {
+  margin: 8px 0 0;
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  background: #15181d;
+  color: #d7dbe0;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bloco {
+    background: #0a0c0f;
+  }
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #2a3038;
+  font-family: var(--fonte-mono);
+  font-size: 11.5px;
+  color: #8a919b;
+}
+
+.linguagem {
+  color: #ff7a3d;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.origem {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pre {
+  margin: 0;
+  padding: 12px 0;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.65;
+  counter-reset: linha;
+}
+
+.linha {
+  display: block;
+  padding: 0 14px 0 44px;
+  position: relative;
+  white-space: pre;
+}
+
+.linha::before {
+  counter-increment: linha;
+  content: counter(linha);
+  position: absolute;
+  left: 0;
+  width: 30px;
+  text-align: right;
+  color: #4b525c;
+}
+
+.comentario {
+  color: #7d8590;
+  font-style: italic;
+}
+
+.texto {
+  color: #a5d6a7;
+}
+
+.numero {
+  color: #f0b86e;
+}
+
+.palavra {
+  color: #b39dff;
+}

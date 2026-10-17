@@ -1,0 +1,115 @@
+.principio {
+  margin: 0;
+  padding: clamp(16px, 2.4vw, 28px);
+  background: var(--papel-elevado);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  box-shadow:
+    0 1px 0 var(--linha),
+    0 32px 64px -40px rgba(21, 24, 29, 0.4);
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(12px, 2vw, 20px);
+}
+
+.etapas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.etapa {
+  font: inherit;
+  font-family: var(--fonte-mono);
+  font-size: 12px;
+  padding: 4px 10px;
+  border: 1px solid var(--linha);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--tinta-suave);
+  cursor: pointer;
+  transition: background var(--rapido) ease, color var(--rapido) ease, border-color var(--rapido) ease;
+}
+
+.etapa:hover {
+  border-color: var(--sinal);
+  color: var(--tinta);
+}
+
+.etapa span {
+  color: var(--tinta-fraca);
+}
+
+.etapaAtiva {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel);
+}
+
+.etapaAtiva span {
+  color: var(--sinal);
+}
+
+.console {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-top: clamp(12px, 2vw, 18px);
+  padding: 12px 14px;
+  border-radius: 3px;
+  background: #15181d;
+  color: #d7dbe0;
+  font-size: 13.5px;
+  overflow-x: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .console {
+    background: #0a0c0f;
+  }
+}
+
+.prompt {
+  color: #ff7a3d;
+  font-family: var(--fonte-mono);
+}
+
+.artefato {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  animation: surgir var(--normal) var(--ease-saida);
+}
+
+/* No celular o diagrama mantém um tamanho legível e rola para o lado. */
+.tela {
+  overflow-x: auto;
+}
+
+@media (max-width: 760px) {
+  .tela > svg {
+    min-width: 760px;
+  }
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.legenda {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--tinta-suave);
+}
