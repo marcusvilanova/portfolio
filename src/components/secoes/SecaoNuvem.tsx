@@ -1,3 +1,4 @@
+import { Declaracao } from '@/components/texto/Declaracao'
 import { PROJETOS_NUVEM } from '@/data/outros'
 import styles from './SecaoNuvem.module.css'
 
@@ -7,11 +8,11 @@ export function SecaoNuvem() {
       <div className="envoltorio">
         <div className="titulo-secao">
           <p className="rotulo">Nuvem e DevOps</p>
-          <h2 id="titulo-nuvem">Do contêiner ao Azure</h2>
+          <Declaracao id="titulo-nuvem" texto="Do contêiner ao Azure." />
           <p>Projetos da FIAP publicados de verdade: cada linha mostra o caminho da requisição até o dado.</p>
         </div>
 
-        <ol className={styles.lista}>
+        <ol className={`${styles.lista} revelar`}>
           {PROJETOS_NUVEM.map((projeto) => (
             <li key={projeto.nome} className={styles.item}>
               <div className={styles.cabeca}>

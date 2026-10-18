@@ -27,29 +27,51 @@
   color: var(--sinal);
 }
 
-.menu {
+.perfis {
   display: flex;
-  gap: clamp(12px, 2vw, 28px);
+  gap: clamp(14px, 2vw, 28px);
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  font-family: var(--fonte-mono);
+  font-size: 13px;
 }
 
-.menu a {
+.perfis a {
   text-decoration: none;
   color: var(--tinta-suave);
   white-space: nowrap;
 }
 
-.menu a:hover {
+.perfis a:hover {
   color: var(--sinal);
 }
 
-@media (max-width: 640px) {
-  .menu li:nth-child(n + 3) {
-    display: none;
+/* Linha de progresso da leitura, presa à rolagem da página. Sem suporte, não aparece. */
+.progresso {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .progresso {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--sinal);
+    transform-origin: left center;
+    animation: progredir linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes progredir {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }

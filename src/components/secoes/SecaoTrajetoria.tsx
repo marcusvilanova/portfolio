@@ -1,3 +1,4 @@
+import { Declaracao } from '@/components/texto/Declaracao'
 import { CONTATO, FORMACAO, TRAJETORIA } from '@/data/outros'
 import styles from './SecaoTrajetoria.module.css'
 
@@ -7,7 +8,7 @@ export function SecaoTrajetoria() {
         <div className={`envoltorio ${styles.grade}`}>
           <div className="titulo-secao">
             <p className="rotulo">Trajetória</p>
-            <h2 id="titulo-trajetoria">Do balcão ao código</h2>
+            <Declaracao id="titulo-trajetoria" texto="Do balcão ao código." />
             <p>
               Antes de construir sistemas, trabalhei do lado de quem usa: ouvidoria hospitalar e atendimento nas Fábricas
               de Cultura. Hoje construo para essas mesmas áreas.
@@ -16,7 +17,7 @@ export function SecaoTrajetoria() {
 
           <ol className={styles.linhaDoTempo}>
             {TRAJETORIA.map((marco) => (
-              <li key={marco.periodo} className={styles.marco}>
+              <li key={marco.periodo} className={`${styles.marco} revelar`}>
                 <span className={styles.periodo}>{marco.periodo}</span>
                 <h3>{marco.onde}</h3>
                 <p>{marco.oQue}</p>
@@ -42,7 +43,7 @@ export function Rodape() {
     <footer id="contato" className={styles.contato}>
       <div className="envoltorio">
         <p className="rotulo">Contato</p>
-        <h2>Vamos conversar sobre IA em sistemas reais.</h2>
+        <Declaracao className="declaracao-final" texto="Vamos conversar sobre IA em sistemas reais." />
         <ul className={styles.canais}>
           <li>
             <a href={CONTATO.linkedin} target="_blank" rel="noreferrer">

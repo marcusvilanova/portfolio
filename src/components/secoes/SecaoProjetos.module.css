@@ -1,0 +1,55 @@
+/* Sumário: atalho para cada projeto antes das cenas longas. */
+.sumario {
+  margin: 0 0 clamp(24px, 4vw, 48px);
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--tinta);
+}
+
+.sumario a {
+  display: grid;
+  grid-template-columns: 3.5ch minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--linha);
+  text-decoration: none;
+  transition: padding var(--normal) var(--ease-saida), color var(--rapido) ease;
+}
+
+.sumario a:hover {
+  padding-left: 10px;
+}
+
+.numero {
+  font-family: var(--fonte-mono);
+  font-size: 13px;
+  color: var(--sinal);
+}
+
+.nome {
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.contexto {
+  font-family: var(--fonte-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .sumario a {
+    grid-template-columns: 3.5ch minmax(0, 1fr);
+    row-gap: 4px;
+  }
+
+  .contexto {
+    grid-column: 2;
+    white-space: normal;
+  }
+}

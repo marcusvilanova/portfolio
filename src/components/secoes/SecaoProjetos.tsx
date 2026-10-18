@@ -1,5 +1,9 @@
 import { CenaProjeto } from '@/components/cena/CenaProjeto'
+import { Declaracao } from '@/components/texto/Declaracao'
 import { PROJETOS_IA } from '@/data/projetos-ia'
+import styles from './SecaoProjetos.module.css'
+
+const dois = (n: number) => String(n).padStart(2, '0')
 
 export function SecaoProjetos() {
   return (
@@ -7,16 +11,41 @@ export function SecaoProjetos() {
       <div className="envoltorio">
         <div className="titulo-secao">
           <p className="rotulo">Projetos de IA</p>
-          <h2 id="titulo-projetos">Role a página e a arquitetura se monta</h2>
+          <Declaracao id="titulo-projetos" texto="Role a página e a arquitetura se monta." />
           <p>
             Cada projeto aparece passo a passo, na ordem em que uma pergunta atravessa o sistema. Os trechos do RAG
             vêm do repositório público; os sistemas da Poiesis têm código privado, então os trechos são reescritos
             para mostrar o padrão.
           </p>
         </div>
-        {PROJETOS_IA.map((projeto, indice) => (
-          <CenaProjeto key={projeto.id} projeto={projeto} numero={indice + 1} total={PROJETOS_IA.length} />
-        ))}
+
+        <ol className={styles.sumario} aria-label="Projetos desta seção">
+          {PROJETOS_IA.map((projeto, indice) => (
+            <li key={projeto.id}>
+              <a href={`#cena-${projeto.id}`}>
+                <span className={styles.numero}>{dois(indice + 1)}</span>
+                <span className={styles.nome}>{projeto.nome}</span>
+                <span className={styles.contexto}>{projeto.contexto}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        {PROJETOS_IA.map((projeto, indice) => {
+          const seguinte = PROJETOS_IA[indice + 1]
+          const proximo = seguinte
+            ? { href: `#cena-${seguinte.id}`, rotulo: seguinte.nome }
+            : { href: '#nuvem', rotulo: 'Nuvem e DevOps' }
+          return (
+            <CenaProjeto
+              key={projeto.id}
+              projeto={projeto}
+              numero={indice + 1}
+              total={PROJETOS_IA.length}
+              proximo={proximo}
+            />
+          )
+        })}
       </div>
     </section>
   )

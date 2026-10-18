@@ -11,7 +11,10 @@
 }
 
 .cabecalho h3 {
-  font-size: clamp(26px, 3.2vw, 38px);
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.8vw, 48px);
+  letter-spacing: -0.02em;
 }
 
 .resumo {
@@ -47,6 +50,58 @@
   box-shadow:
     0 1px 0 var(--linha),
     0 24px 48px -32px rgba(0, 0, 0, 0.45);
+}
+
+/* Progresso segmentado do projeto: um traço por passo, e a saída para quem quer seguir adiante. */
+.progresso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+  font-family: var(--fonte-mono);
+  font-size: 12px;
+}
+
+.contagem {
+  color: var(--tinta-suave);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.segmentos {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.segmentos li {
+  flex: 1;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--linha);
+  transition: background var(--normal) var(--ease-saida);
+}
+
+.segmentos .feito {
+  background: var(--tinta-fraca);
+}
+
+.segmentos .atual {
+  background: var(--sinal);
+}
+
+.pular {
+  color: var(--tinta-suave);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 2px 0;
+}
+
+.pular:hover {
+  color: var(--sinal);
 }
 
 .tela {

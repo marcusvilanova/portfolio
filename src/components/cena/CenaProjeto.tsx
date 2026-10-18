@@ -11,11 +11,13 @@ interface Props {
   projeto: Projeto
   numero: number
   total: number
+  /** Para onde vai o "pular": a próxima cena, ou a seção seguinte depois da última. */
+  proximo: { href: string; rotulo: string }
 }
 
 const dois = (n: number) => String(n).padStart(2, '0')
 
-export function CenaProjeto({ projeto, numero, total }: Props) {
+export function CenaProjeto({ projeto, numero, total, proximo }: Props) {
   const [passoAtivo, setPassoAtivo] = useState(0)
   const [selecionado, setSelecionado] = useState<string | null>(null)
   const passos = useRef<(HTMLLIElement | null)[]>([])
@@ -38,7 +40,7 @@ export function CenaProjeto({ projeto, numero, total }: Props) {
   const idTitulo = `projeto-${projeto.id}`
 
   return (
-    <section className={styles.cena} aria-labelledby={idTitulo}>
+    <section id={`cena-${projeto.id}`} className={styles.cena} aria-labelledby={idTitulo}>
       <header className={styles.cabecalho}>
         <p className="rotulo">
           {dois(numero)} / {dois(total)} · {projeto.contexto}
@@ -60,6 +62,24 @@ export function CenaProjeto({ projeto, numero, total }: Props) {
       <div className={styles.grade}>
         <div className={styles.palco}>
           <figure className={styles.quadro}>
+            <div className={styles.progresso}>
+              <span className={styles.contagem}>
+                Passo {passoAtivo + 1} de {projeto.passos.length}
+              </span>
+              <ol className={styles.segmentos} aria-hidden="true">
+                {projeto.passos.map((passo, indice) => (
+                  <li
+                    key={passo.titulo}
+                    className={
+                      indice < passoAtivo ? styles.feito : indice === passoAtivo ? styles.atual : undefined
+                    }
+                  />
+                ))}
+              </ol>
+              <a className={styles.pular} href={proximo.href} aria-label={`Pular para ${proximo.rotulo}`}>
+                Pular ↓
+              </a>
+            </div>
             <div className={styles.tela}>
               <Diagrama
                 dados={projeto}

@@ -19,8 +19,8 @@ export function Hero() {
           </p>
           <ul className={styles.acoes}>
             <li>
-              <a className={styles.primaria} href="#projetos">
-                Ver a arquitetura dos projetos ↓
+              <a className={styles.primaria} href="#sistemas">
+                Ver os projetos ↓
               </a>
             </li>
             <li>

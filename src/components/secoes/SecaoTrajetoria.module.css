@@ -76,8 +76,9 @@
   color: var(--tinta-suave);
 }
 
+/* O fundo extra embaixo deixa espaço para a navegação fixa não cobrir os canais. */
 .contato {
-  padding: var(--secao) 0;
+  padding: var(--secao) 0 calc(var(--secao) + 64px);
   background: var(--tinta);
   color: var(--papel);
 }
@@ -88,8 +89,9 @@
 
 .contato h2 {
   margin-top: 14px;
-  font-size: clamp(32px, 5vw, 64px);
-  max-width: 18ch;
+  font-size: clamp(40px, 6.4vw, 88px);
+  line-height: 1;
+  max-width: 16ch;
 }
 
 .canais {

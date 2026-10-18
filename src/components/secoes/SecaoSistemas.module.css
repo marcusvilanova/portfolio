@@ -1,0 +1,141 @@
+.secao {
+  padding: var(--secao) 0;
+  border-top: 1px solid var(--linha);
+}
+
+.lista {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Ficha técnica: identificação à esquerda, campos do caso à direita. */
+.ficha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: clamp(20px, 4vw, 56px);
+  padding: clamp(22px, 3.4vw, 44px);
+  background: var(--papel-elevado);
+  border: 1px solid var(--linha);
+  border-top: 4px solid var(--tinta);
+  border-radius: 2px;
+}
+
+.cabeca {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  align-self: start;
+  position: sticky;
+  top: 88px;
+}
+
+.cabeca h3 {
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  font-size: clamp(26px, 2.7vw, 36px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.resumo {
+  color: var(--tinta-suave);
+}
+
+.campos {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.campos > div {
+  display: grid;
+  grid-template-columns: 15ch minmax(0, 1fr);
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px dashed var(--linha);
+}
+
+.campos > div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.campos dt {
+  font-family: var(--fonte-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sinal);
+  padding-top: 4px;
+}
+
+.campos dd {
+  margin: 0;
+  color: var(--tinta-suave);
+}
+
+.itens {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.itens li::marker {
+  color: var(--tinta-fraca);
+}
+
+/* O diagrama ocupa a largura toda da ficha, abaixo dos campos, para os nós continuarem legíveis. */
+.arquitetura {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px dashed var(--linha);
+}
+
+.arquitetura figcaption {
+  margin-bottom: 8px;
+  font-family: var(--fonte-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sinal);
+}
+
+.diagrama {
+  overflow-x: auto;
+}
+
+.diagrama > svg {
+  max-height: 280px;
+}
+
+.aprofundar {
+  grid-column: 1 / -1;
+  justify-self: start;
+  font-family: var(--fonte-mono);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .ficha {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cabeca {
+    position: static;
+  }
+
+  .campos > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  /* No celular o diagrama mantém um tamanho legível e rola para o lado. */
+  .diagrama > svg {
+    min-width: 680px;
+  }
+}

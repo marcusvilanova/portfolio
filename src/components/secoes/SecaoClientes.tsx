@@ -1,3 +1,4 @@
+import { Declaracao } from '@/components/texto/Declaracao'
 import { SITES_CLIENTES } from '@/data/outros'
 import styles from './SecaoClientes.module.css'
 
@@ -7,13 +8,13 @@ export function SecaoClientes() {
       <div className="envoltorio">
         <div className="titulo-secao">
           <p className="rotulo">Sites para clientes</p>
-          <h2 id="titulo-clientes">Front-end feito sob encomenda</h2>
+          <Declaracao id="titulo-clientes" texto="Front-end feito sob encomenda." />
           <p>Portfólios para profissionais de moda e de audiovisual, com animação por rolagem e publicação na Vercel.</p>
         </div>
 
         <ul className={styles.lista}>
           {SITES_CLIENTES.map((site) => (
-            <li key={site.nome} className={styles.item}>
+            <li key={site.nome} className={`${styles.item} revelar`}>
               <p className="rotulo">{site.para}</p>
               <h3>{site.nome}</h3>
               <p className={styles.resumo}>{site.resumo}</p>

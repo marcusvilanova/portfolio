@@ -317,8 +317,8 @@ const indicadores: Projeto = {
   ],
 }
 
-const hubIa: Projeto = {
-  id: 'hub-ia',
+const plataformaIa: Projeto = {
+  id: 'plataforma-ia',
   nome: 'Camada de IA multi-provedor e automações',
   contexto: 'Poiesis · código privado',
   resumo:
@@ -333,7 +333,7 @@ const hubIa: Projeto = {
     { id: 'provedores', rotulo: 'Provedores', sub: '3 provedores', tipo: 'llm', x: 740, y: 120, detalhe: 'Todos implementam a mesma interface. Trocar de provedor não toca regra de negócio.' },
     { id: 'telemetria', rotulo: 'ia_execucoes', sub: 'uso e falhas', tipo: 'dados', x: 520, y: 320, detalhe: 'Cada chamada grava funcionalidade, modelo, sucesso e erro. É daí que sai quanto a IA custou no mês.' },
     { id: 'n8n', rotulo: 'n8n', sub: '9 fluxos', tipo: 'ferramenta', x: 90, y: 320, detalhe: 'Gatilhos, novas tentativas, logs e avisos: provisionamento, SLA de chamados, acessos órfãos, curadoria de conteúdo.' },
-    { id: 'endpoint', rotulo: 'Endpoint interno', sub: 'segredo no Hub', tipo: 'regra', x: 300, y: 320, detalhe: 'O n8n orquestra e o Hub executa: as chaves do Google e do Bitrix nunca saem do sistema.' },
+    { id: 'endpoint', rotulo: 'Endpoint interno', sub: 'segredo no sistema', tipo: 'regra', x: 300, y: 320, detalhe: 'O n8n orquestra e a plataforma executa: as chaves do Google e do Bitrix nunca saem do sistema.' },
     { id: 'sistemas', rotulo: 'Google · Bitrix', sub: 'contas e acessos', tipo: 'ferramenta', x: 740, y: 320, detalhe: 'Criação e suspensão de contas no provisionamento e no desligamento.' },
   ],
   arestas: [
@@ -398,4 +398,4 @@ export async function executarIa(tarefa: Tarefa, pedido: Pedido): Promise<Result
   ],
 }
 
-export const PROJETOS_IA: Projeto[] = [rag, agenteTr, indicadores, hubIa]
+export const PROJETOS_IA: Projeto[] = [rag, agenteTr, indicadores, plataformaIa]

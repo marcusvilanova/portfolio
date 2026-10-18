@@ -1,13 +1,7 @@
+import { CONTATO } from '@/data/outros'
 import styles from './Cabecalho.module.css'
 
-const ITENS = [
-  { href: '#projetos', rotulo: 'Projetos de IA' },
-  { href: '#nuvem', rotulo: 'Nuvem e DevOps' },
-  { href: '#clientes', rotulo: 'Sites' },
-  { href: '#trajetoria', rotulo: 'Trajetória' },
-  { href: '#contato', rotulo: 'Contato' },
-]
-
+// As seções ficam na navegação fixa do rodapé; aqui ficam a marca, os perfis e o progresso da leitura.
 export function Cabecalho() {
   return (
     <header className={styles.cabecalho}>
@@ -15,16 +9,20 @@ export function Cabecalho() {
         <a href="#inicio" className={styles.marca}>
           marcus<span>.</span>vila-nova
         </a>
-        <nav aria-label="Seções">
-          <ul className={styles.menu}>
-            {ITENS.map((item) => (
-              <li key={item.href}>
-                <a href={item.href}>{item.rotulo}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <ul className={styles.perfis}>
+          <li>
+            <a href={CONTATO.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn ↗
+            </a>
+          </li>
+          <li>
+            <a href={CONTATO.github} target="_blank" rel="noreferrer">
+              GitHub ↗
+            </a>
+          </li>
+        </ul>
       </div>
+      <div className={styles.progresso} aria-hidden="true" />
     </header>
   )
 }

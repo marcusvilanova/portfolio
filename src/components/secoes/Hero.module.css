@@ -1,24 +1,52 @@
 .hero {
-  padding: clamp(48px, 9vw, 120px) 0 var(--secao);
+  padding: clamp(56px, 10vw, 136px) 0 var(--secao);
 }
 
 .texto {
   display: grid;
-  gap: 22px;
-  margin-bottom: clamp(40px, 6vw, 72px);
-  max-width: 880px;
+  gap: 24px;
+  margin-bottom: clamp(48px, 7vw, 88px);
+  max-width: 960px;
+}
+
+/* Abertura: cada linha do texto sobe em sequência ao carregar. */
+.texto > * {
+  animation: entrar 900ms var(--ease-saida) both;
+}
+
+.texto > :nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.texto > :nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.texto > :nth-child(4) {
+  animation-delay: 320ms;
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
 }
 
 .texto h1 {
-  font-size: clamp(48px, 8.4vw, 112px);
-  line-height: 0.95;
-  letter-spacing: -0.035em;
+  font-size: clamp(54px, 10vw, 140px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
 }
 
 .gancho {
-  font-size: clamp(18px, 1.7vw, 22px);
+  font-size: clamp(18px, 1.8vw, 23px);
   color: var(--tinta-suave);
-  max-width: 60ch;
+  max-width: 58ch;
 }
 
 .acoes {

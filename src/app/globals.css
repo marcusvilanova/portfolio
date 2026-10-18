@@ -25,6 +25,7 @@
   --no-saida-borda: #15181d;
   --no-saida-texto: #f3f2ec;
 
+  --fonte-display: var(--font-plex-serif), Georgia, serif;
   --fonte-texto: var(--font-plex-sans), system-ui, sans-serif;
   --fonte-mono: var(--font-plex-mono), ui-monospace, monospace;
 
@@ -121,6 +122,14 @@ h3 {
   font-weight: 600;
 }
 
+/* Declarações em serifada; títulos de projeto e de cartão seguem em sans. */
+h1,
+h2 {
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
 p {
   margin: 0;
 }
@@ -167,18 +176,73 @@ pre {
 
 .titulo-secao {
   display: grid;
-  gap: 14px;
-  margin-bottom: clamp(40px, 6vw, 72px);
-  max-width: 760px;
+  gap: 18px;
+  margin-bottom: clamp(48px, 7vw, 96px);
+  max-width: 880px;
 }
 
 .titulo-secao h2 {
-  font-size: clamp(32px, 4.4vw, 52px);
+  font-size: clamp(38px, 5.8vw, 76px);
+  line-height: 1.02;
+  max-width: 18ch;
 }
 
 .titulo-secao p {
   color: var(--tinta-suave);
   font-size: 18px;
+  max-width: 64ch;
+}
+
+/*
+ * Movimento ligado à rolagem, sem JavaScript. Sem suporte a scroll-driven animations,
+ * ou com o sistema pedindo menos movimento, tudo aparece pronto.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* As palavras de uma declaração ganham tinta conforme a frase sobe até o meio da tela. */
+    .declaracao {
+      view-timeline-name: --declaracao;
+    }
+
+    .declaracao .palavra {
+      animation: tingir linear both;
+      animation-timeline: --declaracao;
+      animation-range: cover calc(6% + var(--p) * 32%) cover calc(16% + var(--p) * 32%);
+    }
+
+    /* No fim da página a frase nunca chega ao meio da tela: ali ela se completa ao terminar de entrar. */
+    .declaracao-final .palavra {
+      animation-range: entry calc(var(--p) * 50%) entry calc(50% + var(--p) * 50%);
+    }
+
+    /* Blocos de conteúdo sobem um pouco ao entrar na tela. */
+    .revelar {
+      animation: subir linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+@keyframes tingir {
+  from {
+    opacity: 0.14;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Usa translate, não transform, para não brigar com o transform do hover dos cartões. */
+@keyframes subir {
+  from {
+    opacity: 0;
+    translate: 0 32px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
