@@ -62,17 +62,12 @@
   align-items: baseline;
   margin-top: clamp(12px, 2vw, 18px);
   padding: 12px 14px;
+  border: 1px solid var(--linha);
   border-radius: 3px;
-  background: #15181d;
+  background: #07080a;
   color: #d7dbe0;
   font-size: 13.5px;
   overflow-x: auto;
-}
-
-@media (prefers-color-scheme: dark) {
-  .console {
-    background: #0a0c0f;
-  }
 }
 
 .prompt {

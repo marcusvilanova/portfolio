@@ -1,4 +1,4 @@
-import { Declaracao } from '@/components/texto/Declaracao'
+import { Abertura } from '@/components/texto/Abertura'
 import { SITES_CLIENTES } from '@/data/outros'
 import styles from './SecaoClientes.module.css'
 
@@ -6,11 +6,13 @@ export function SecaoClientes() {
   return (
     <section id="clientes" className={styles.secao} aria-labelledby="titulo-clientes">
       <div className="envoltorio">
-        <div className="titulo-secao">
-          <p className="rotulo">Sites para clientes</p>
-          <Declaracao id="titulo-clientes" texto="Front-end feito sob encomenda." />
+        <Abertura
+          rotulo="Sites para clientes"
+          titulo="Front-end feito sob encomenda."
+          idTitulo="titulo-clientes"
+        >
           <p>Portfólios para profissionais de moda e de audiovisual, com animação por rolagem e publicação na Vercel.</p>
-        </div>
+        </Abertura>
 
         <ul className={styles.lista}>
           {SITES_CLIENTES.map((site) => (

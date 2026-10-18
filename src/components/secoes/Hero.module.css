@@ -9,21 +9,21 @@
   max-width: 960px;
 }
 
-/* Abertura: cada linha do texto sobe em sequência ao carregar. */
+/* Abertura: o rótulo, a descrição e as ações sobem em sequência ao carregar; o nome vem por máscara. */
 .texto > * {
   animation: entrar 900ms var(--ease-saida) both;
 }
 
-.texto > :nth-child(2) {
-  animation-delay: 80ms;
+.texto > h1 {
+  animation: none;
 }
 
 .texto > :nth-child(3) {
-  animation-delay: 200ms;
+  animation-delay: 420ms;
 }
 
 .texto > :nth-child(4) {
-  animation-delay: 320ms;
+  animation-delay: 560ms;
 }
 
 @keyframes entrar {
@@ -34,6 +34,53 @@
   to {
     opacity: 1;
     translate: none;
+  }
+}
+
+/* A folga embaixo da máscara não corta descendentes nem acentos. */
+.linha {
+  display: block;
+  overflow: hidden;
+  padding: 0.06em 0 0.1em;
+  margin: -0.06em 0 -0.1em;
+}
+
+.linha > span {
+  display: block;
+  animation: pela-mascara 1100ms var(--ease-saida) both;
+}
+
+.linha:nth-child(2) > span {
+  animation-delay: 130ms;
+}
+
+@keyframes pela-mascara {
+  from {
+    translate: 0 110%;
+  }
+  to {
+    translate: none;
+  }
+}
+
+/* Ao rolar, o texto do hero se afasta: sobe, perde foco e diminui, dando profundidade à passagem. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .texto {
+      transform-origin: left center;
+      animation: afastar linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+
+@keyframes afastar {
+  to {
+    opacity: 0;
+    translate: 0 -10vh;
+    scale: 0.94;
+    filter: blur(8px);
   }
 }
 

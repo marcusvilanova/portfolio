@@ -1,4 +1,4 @@
-import { Declaracao } from '@/components/texto/Declaracao'
+import { Abertura } from '@/components/texto/Abertura'
 import { PROJETOS_NUVEM } from '@/data/outros'
 import styles from './SecaoNuvem.module.css'
 
@@ -6,11 +6,13 @@ export function SecaoNuvem() {
   return (
     <section id="nuvem" className={styles.secao} aria-labelledby="titulo-nuvem">
       <div className="envoltorio">
-        <div className="titulo-secao">
-          <p className="rotulo">Nuvem e DevOps</p>
-          <Declaracao id="titulo-nuvem" texto="Do contêiner ao Azure." />
+        <Abertura
+          rotulo="Nuvem e DevOps"
+          titulo="Do contêiner ao Azure."
+          idTitulo="titulo-nuvem"
+        >
           <p>Projetos da FIAP publicados de verdade: cada linha mostra o caminho da requisição até o dado.</p>
-        </div>
+        </Abertura>
 
         <ol className={`${styles.lista} revelar`}>
           {PROJETOS_NUVEM.map((projeto) => (

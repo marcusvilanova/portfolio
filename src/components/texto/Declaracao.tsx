@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { Fragment, type CSSProperties } from 'react'
 
 interface Props {
   texto: string
@@ -8,7 +8,7 @@ interface Props {
 }
 
 /**
- * Frase grande cujas palavras ganham tinta conforme sobem na tela (ver .declaracao em globals.css).
+ * Frase grande cujas palavras saem do desfoque conforme sobem na tela (ver .declaracao em globals.css).
  * Cada palavra recebe --p, a posição relativa dela na frase, que escalona o início da animação.
  */
 export function Declaracao({ texto, como: Tag = 'h2', id, className }: Props) {
@@ -17,10 +17,14 @@ export function Declaracao({ texto, como: Tag = 'h2', id, className }: Props) {
 
   return (
     <Tag id={id} className={classe}>
+      {/* O espaço fica fora do span: a palavra é inline-block (para poder subir) e engoliria o espaço final. */}
       {palavras.map((palavra, indice) => (
-        <span key={indice} className="palavra" style={{ '--p': indice / palavras.length } as CSSProperties}>
-          {indice < palavras.length - 1 ? `${palavra} ` : palavra}
-        </span>
+        <Fragment key={indice}>
+          <span className="palavra" style={{ '--p': indice / palavras.length } as CSSProperties}>
+            {palavra}
+          </span>
+          {indice < palavras.length - 1 && ' '}
+        </Fragment>
       ))}
     </Tag>
   )

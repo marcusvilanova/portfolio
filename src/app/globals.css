@@ -1,29 +1,29 @@
 :root {
-  /* Papel técnico: fundo claro com grade, tinta escura, um único sinal laranja para o fluxo. */
-  --papel: #f3f2ec;
-  --papel-elevado: #fbfaf6;
-  --tinta: #15181d;
-  --tinta-suave: #4b525c;
-  --tinta-fraca: #80868f;
-  --linha: #d9d7cd;
-  --grade: rgba(21, 24, 29, 0.045);
-  --sinal: #c2410c;
-  --sinal-fraco: rgba(194, 65, 12, 0.12);
+  /* Fundo preto profundo com grade discreta, tinta clara e um único sinal laranja para o fluxo. */
+  --papel: #000000;
+  --papel-elevado: #0b0c0e;
+  --tinta: #eceef1;
+  --tinta-suave: #a9afb8;
+  --tinta-fraca: #7b818b;
+  --linha: #23272e;
+  --grade: rgba(236, 238, 241, 0.035);
+  --sinal: #ff7a3d;
+  --sinal-fraco: rgba(255, 122, 61, 0.16);
 
   /* Tipos de nó do diagrama. */
-  --no-entrada: #e8e6dc;
-  --no-entrada-borda: #6b6f76;
-  --no-llm: #ebe5fa;
-  --no-llm-borda: #6741d9;
-  --no-regra: #dcefe9;
-  --no-regra-borda: #0c7a5e;
-  --no-dados: #dfe9f6;
-  --no-dados-borda: #1c64b5;
-  --no-ferramenta: #f5ead6;
-  --no-ferramenta-borda: #995900;
-  --no-saida: #15181d;
-  --no-saida-borda: #15181d;
-  --no-saida-texto: #f3f2ec;
+  --no-entrada: #1b1f25;
+  --no-entrada-borda: #8a919b;
+  --no-llm: #201a36;
+  --no-llm-borda: #9b7bff;
+  --no-regra: #0f2a24;
+  --no-regra-borda: #3cc49b;
+  --no-dados: #112233;
+  --no-dados-borda: #5aa2f0;
+  --no-ferramenta: #2e230d;
+  --no-ferramenta-borda: #e0a442;
+  --no-saida: #eceef1;
+  --no-saida-borda: #eceef1;
+  --no-saida-texto: #000000;
 
   --fonte-display: var(--font-plex-serif), Georgia, serif;
   --fonte-texto: var(--font-plex-sans), system-ui, sans-serif;
@@ -37,37 +37,7 @@
   --rapido: 160ms;
   --normal: 420ms;
 
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --papel: #0f1216;
-    --papel-elevado: #161a20;
-    --tinta: #e7e9ec;
-    --tinta-suave: #a7adb6;
-    --tinta-fraca: #79808a;
-    --linha: #2a3038;
-    --grade: rgba(231, 233, 236, 0.04);
-    --sinal: #ff7a3d;
-    --sinal-fraco: rgba(255, 122, 61, 0.16);
-
-    --no-entrada: #222830;
-    --no-entrada-borda: #8a919b;
-    --no-llm: #241d3b;
-    --no-llm-borda: #9b7bff;
-    --no-regra: #12302a;
-    --no-regra-borda: #3cc49b;
-    --no-dados: #142638;
-    --no-dados-borda: #5aa2f0;
-    --no-ferramenta: #33270f;
-    --no-ferramenta-borda: #e0a442;
-    --no-saida: #e7e9ec;
-    --no-saida-borda: #e7e9ec;
-    --no-saida-texto: #0f1216;
-
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
 
 *,
@@ -193,19 +163,28 @@ pre {
   max-width: 64ch;
 }
 
+.declaracao .palavra {
+  display: inline-block;
+}
+
+/* Abertura de seção: sem suporte ou com menos movimento, é só um bloco comum. */
+.abertura-palco {
+  display: grid;
+}
+
 /*
  * Movimento ligado à rolagem, sem JavaScript. Sem suporte a scroll-driven animations,
- * ou com o sistema pedindo menos movimento, tudo aparece pronto.
+ * ou com o sistema pedindo menos movimento, tudo aparece pronto e nada fica preso.
  */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* As palavras de uma declaração ganham tinta conforme a frase sobe até o meio da tela. */
+    /* As palavras saem do desfoque e sobem conforme a frase chega ao meio da tela. */
     .declaracao {
       view-timeline-name: --declaracao;
     }
 
     .declaracao .palavra {
-      animation: tingir linear both;
+      animation: emergir linear both;
       animation-timeline: --declaracao;
       animation-range: cover calc(6% + var(--p) * 32%) cover calc(16% + var(--p) * 32%);
     }
@@ -215,25 +194,62 @@ pre {
       animation-range: entry calc(var(--p) * 50%) entry calc(50% + var(--p) * 50%);
     }
 
-    /* Blocos de conteúdo sobem um pouco ao entrar na tela. */
-    .revelar {
+    /*
+     * Abertura presa: o bloco é mais alto que a tela e o palco fica fixo no centro enquanto ele passa.
+     * Em proporção do percurso todo (185vh + 100vh): o palco prende em ~35% e solta em ~65%.
+     * As palavras terminam logo depois de prender; a descrição aparece em seguida; resta uma pausa.
+     */
+    .abertura {
+      height: 185vh;
+      view-timeline-name: --abertura;
+    }
+
+    .abertura-palco {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      align-content: center;
+    }
+
+    .abertura .titulo-secao {
+      margin-bottom: 0;
+    }
+
+    .abertura .declaracao .palavra {
+      animation-timeline: --abertura;
+      animation-range: cover calc(12% + var(--p) * 16%) cover calc(21% + var(--p) * 16%);
+    }
+
+    .abertura .titulo-secao > p:not(.rotulo) {
       animation: subir linear both;
+      animation-timeline: --abertura;
+      animation-range: cover 34% cover 44%;
+    }
+
+    /* Blocos de conteúdo sobem de mais longe e se aproximam ao entrar na tela. */
+    .revelar {
+      animation: aproximar linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 70%;
+      animation-range: entry 0% entry 360px;
     }
   }
 }
 
-@keyframes tingir {
+@keyframes emergir {
   from {
-    opacity: 0.14;
+    opacity: 0.08;
+    filter: blur(10px);
+    translate: 0 0.35em;
   }
   to {
     opacity: 1;
+    filter: none;
+    translate: none;
   }
 }
 
-/* Usa translate, não transform, para não brigar com o transform do hover dos cartões. */
+/* Usa translate e scale, não transform, para não brigar com o transform do hover dos cartões. */
 @keyframes subir {
   from {
     opacity: 0;
@@ -242,6 +258,19 @@ pre {
   to {
     opacity: 1;
     translate: none;
+  }
+}
+
+@keyframes aproximar {
+  from {
+    opacity: 0;
+    translate: 0 72px;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+    scale: none;
   }
 }
 

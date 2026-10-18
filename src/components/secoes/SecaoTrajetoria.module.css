@@ -79,12 +79,9 @@
 /* O fundo extra embaixo deixa espaço para a navegação fixa não cobrir os canais. */
 .contato {
   padding: var(--secao) 0 calc(var(--secao) + 64px);
-  background: var(--tinta);
-  color: var(--papel);
-}
-
-.contato :global(.rotulo) {
-  color: color-mix(in srgb, var(--papel) 60%, transparent);
+  border-top: 1px solid var(--linha);
+  background: var(--papel);
+  color: var(--tinta);
 }
 
 .contato h2 {

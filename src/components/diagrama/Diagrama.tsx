@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useMemo } from 'react'
+import { useId, useMemo, type CSSProperties } from 'react'
 import type { Aresta, No, Projeto } from '@/data/tipos'
 import { usePrefereMenosMovimento } from '@/lib/usePrefereMenosMovimento'
 import { geometriaDaAresta, chaveDaAresta, ALTURA_NO, LARGURA_NO } from './geometria'
@@ -15,9 +15,18 @@ interface Props {
   revelarTudo?: boolean
   selecionado?: string | null
   onSelecionar?: (id: string) => void
+  /** Monta o diagrama com a rolagem: nós na ordem da lista e cada aresta logo depois do seu último nó. */
+  montarAoRolar?: boolean
 }
 
-export function Diagrama({ dados, passoAtivo, revelarTudo = false, selecionado = null, onSelecionar }: Props) {
+export function Diagrama({
+  dados,
+  passoAtivo,
+  revelarTudo = false,
+  selecionado = null,
+  onSelecionar,
+  montarAoRolar = false,
+}: Props) {
   const uid = useId().replace(/:/g, '')
   const menosMovimento = usePrefereMenosMovimento()
 
@@ -31,10 +40,11 @@ export function Diagrama({ dados, passoAtivo, revelarTudo = false, selecionado =
   }, [dados.passos, passoAtivo, revelarTudo])
 
   const porId = useMemo(() => new Map(dados.nos.map((no) => [no.id, no])), [dados.nos])
+  const ordem = useMemo(() => new Map(dados.nos.map((no, indice) => [no.id, indice])), [dados.nos])
 
   return (
     <svg
-      className={styles.diagrama}
+      className={montarAoRolar ? `${styles.diagrama} ${styles.montar}` : styles.diagrama}
       viewBox={`0 0 ${dados.largura} ${dados.altura}`}
       role="group"
       aria-label={`Diagrama de arquitetura: ${dados.nome}`}
@@ -58,6 +68,8 @@ export function Diagrama({ dados, passoAtivo, revelarTudo = false, selecionado =
           ativa={fluxo.has(chaveDaAresta(aresta))}
           uid={uid}
           animar={!menosMovimento}
+          ordem={Math.max(ordem.get(aresta.de) ?? 0, ordem.get(aresta.para) ?? 0)}
+          medirComprimento={montarAoRolar}
         />
       ))}
 
@@ -69,6 +81,7 @@ export function Diagrama({ dados, passoAtivo, revelarTudo = false, selecionado =
           ativo={ativos.has(no.id)}
           selecionado={selecionado === no.id}
           onSelecionar={onSelecionar}
+          ordem={ordem.get(no.id) ?? 0}
         />
       ))}
     </svg>
@@ -83,9 +96,13 @@ interface PropsAresta {
   ativa: boolean
   uid: string
   animar: boolean
+  /** Posição na montagem com a rolagem (ver .montar no CSS). */
+  ordem: number
+  /** pathLength=1 deixa o traço ser desenhado por stroke-dashoffset; arestas de retorno mantêm o tracejado. */
+  medirComprimento: boolean
 }
 
-function ArestaDesenhada({ aresta, de, para, visivel, ativa, uid, animar }: PropsAresta) {
+function ArestaDesenhada({ aresta, de, para, visivel, ativa, uid, animar, ordem, medirComprimento }: PropsAresta) {
   if (!de || !para) return null
   const { d, rotulo } = geometriaDaAresta(de, para, aresta.retorno)
   const classe = [styles.aresta, visivel && styles.visivel, ativa && styles.ativa, aresta.retorno && styles.retorno]
@@ -93,8 +110,13 @@ function ArestaDesenhada({ aresta, de, para, visivel, ativa, uid, animar }: Prop
     .join(' ')
 
   return (
-    <g className={classe}>
-      <path d={d} className={styles.linha} markerEnd={`url(#${uid}-${ativa ? 'seta-ativa' : 'seta'})`} />
+    <g className={classe} style={{ '--ordem': ordem } as CSSProperties}>
+      <path
+        d={d}
+        className={styles.linha}
+        pathLength={medirComprimento && !aresta.retorno ? 1 : undefined}
+        markerEnd={`url(#${uid}-${ativa ? 'seta-ativa' : 'seta'})`}
+      />
       {ativa && visivel && animar && (
         <circle r="4.5" className={styles.pacote}>
           <animateMotion dur="1.6s" repeatCount="indefinite" path={d} />
@@ -115,9 +137,10 @@ interface PropsNo {
   ativo: boolean
   selecionado: boolean
   onSelecionar?: (id: string) => void
+  ordem: number
 }
 
-function NoDesenhado({ no, visivel, ativo, selecionado, onSelecionar }: PropsNo) {
+function NoDesenhado({ no, visivel, ativo, selecionado, onSelecionar, ordem }: PropsNo) {
   const interativo = Boolean(onSelecionar) && visivel
   const classe = [
     styles.no,
@@ -136,6 +159,7 @@ function NoDesenhado({ no, visivel, ativo, selecionado, onSelecionar }: PropsNo)
     <g
       className={classe}
       transform={`translate(${no.x - LARGURA_NO / 2} ${no.y - ALTURA_NO / 2})`}
+      style={{ '--ordem': ordem } as CSSProperties}
       role={interativo ? 'button' : undefined}
       tabIndex={interativo ? 0 : -1}
       aria-label={interativo ? `${no.rotulo}. ${no.detalhe}` : undefined}

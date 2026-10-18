@@ -2,15 +2,9 @@
   margin: 8px 0 0;
   border: 1px solid var(--linha);
   border-radius: 4px;
-  background: #15181d;
+  background: #07080a;
   color: #d7dbe0;
   overflow: hidden;
-}
-
-@media (prefers-color-scheme: dark) {
-  .bloco {
-    background: #0a0c0f;
-  }
 }
 
 .cabecalho {

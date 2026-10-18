@@ -160,3 +160,65 @@
 .interativo:focus-visible .caixa {
   stroke-width: 3;
 }
+
+/* ---- Montagem com a rolagem (diagramas estáticos das fichas) ---- */
+
+/*
+ * Os nós surgem na ordem da lista e cada aresta se desenha logo depois do seu último nó, enquanto
+ * o diagrama sobe até o meio da tela. Sem suporte ou com menos movimento, ele aparece montado.
+ *
+ * A linha do tempo --diagrama é declarada por quem usa o componente, num ancestral fora de qualquer
+ * caixa com overflow: o diagrama costuma ficar numa caixa que rola para o lado no celular, e uma
+ * view timeline mede o progresso pelo contêiner de rolagem mais próximo. Sem ela, nada anima.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .montar .corpo {
+      animation: no-montar linear both;
+      animation-timeline: --diagrama;
+      animation-range: cover calc(10% + var(--ordem) * 5%) cover calc(17% + var(--ordem) * 5%);
+    }
+
+    .montar .aresta {
+      animation: aresta-surgir linear both;
+      animation-timeline: --diagrama;
+      animation-range: cover calc(14% + var(--ordem) * 5%) cover calc(16% + var(--ordem) * 5%);
+    }
+
+    .montar .aresta:not(.retorno) .linha {
+      stroke-dasharray: 1;
+      animation: aresta-desenhar linear both;
+      animation-timeline: --diagrama;
+      animation-range: cover calc(14% + var(--ordem) * 5%) cover calc(21% + var(--ordem) * 5%);
+    }
+  }
+}
+
+@keyframes no-montar {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes aresta-surgir {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes aresta-desenhar {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -11,16 +11,24 @@
   list-style: none;
 }
 
-/* Ficha técnica: identificação à esquerda, campos do caso à direita. */
+/* Ficha técnica: identificação e campos lado a lado; diagrama e link embaixo, na largura toda. */
 .ficha {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
-  gap: clamp(20px, 4vw, 56px);
+  /* minmax(0, 1fr): sem isso a coluna cresce até a largura mínima do diagrama (680px no celular). */
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 32px);
   padding: clamp(22px, 3.4vw, 44px);
   background: var(--papel-elevado);
   border: 1px solid var(--linha);
   border-top: 4px solid var(--tinta);
   border-radius: 2px;
+}
+
+/* O sticky da identificação vale só dentro deste bloco, que termina antes do diagrama. */
+.corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: clamp(20px, 4vw, 56px);
 }
 
 .cabeca {
@@ -90,10 +98,16 @@
 
 /* O diagrama ocupa a largura toda da ficha, abaixo dos campos, para os nós continuarem legíveis. */
 .arquitetura {
-  grid-column: 1 / -1;
   margin: 0;
   padding-top: 18px;
   border-top: 1px dashed var(--linha);
+}
+
+/* Linha do tempo da montagem do diagrama (ver .montar em Diagrama.module.css): fica na figura, fora da caixa que rola para o lado. */
+@supports (animation-timeline: view()) {
+  .arquitetura {
+    view-timeline-name: --diagrama;
+  }
 }
 
 .arquitetura figcaption {
@@ -114,14 +128,13 @@
 }
 
 .aprofundar {
-  grid-column: 1 / -1;
   justify-self: start;
   font-family: var(--fonte-mono);
   font-size: 14px;
 }
 
 @media (max-width: 900px) {
-  .ficha {
+  .corpo {
     grid-template-columns: minmax(0, 1fr);
   }
 

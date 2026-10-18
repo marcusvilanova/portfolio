@@ -8,10 +8,14 @@ export function Hero() {
       <div className="envoltorio">
         <div className={styles.texto}>
           <p className="rotulo">Analista de Sistemas · IA generativa aplicada · São Paulo</p>
+          {/* Cada linha sobe por trás de uma máscara ao carregar. */}
           <h1 id="titulo-hero">
-            Marcus Vinícius
-            <br />
-            Vila Nova
+            <span className={styles.linha}>
+              <span>Marcus Vinícius</span>
+            </span>
+            <span className={styles.linha}>
+              <span>Vila Nova</span>
+            </span>
           </h1>
           <p className={styles.gancho}>
             Construo aplicações com IA generativa para áreas que conheço por ter trabalhado nelas: agentes com

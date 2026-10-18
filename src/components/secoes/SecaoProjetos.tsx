@@ -1,5 +1,5 @@
 import { CenaProjeto } from '@/components/cena/CenaProjeto'
-import { Declaracao } from '@/components/texto/Declaracao'
+import { Abertura } from '@/components/texto/Abertura'
 import { PROJETOS_IA } from '@/data/projetos-ia'
 import styles from './SecaoProjetos.module.css'
 
@@ -9,15 +9,17 @@ export function SecaoProjetos() {
   return (
     <section id="projetos" aria-labelledby="titulo-projetos">
       <div className="envoltorio">
-        <div className="titulo-secao">
-          <p className="rotulo">Projetos de IA</p>
-          <Declaracao id="titulo-projetos" texto="Role a página e a arquitetura se monta." />
+        <Abertura
+          rotulo="Projetos de IA"
+          titulo="Role a página e a arquitetura se monta."
+          idTitulo="titulo-projetos"
+        >
           <p>
             Cada projeto aparece passo a passo, na ordem em que uma pergunta atravessa o sistema. Os trechos do RAG
             vêm do repositório público; os sistemas da Poiesis têm código privado, então os trechos são reescritos
             para mostrar o padrão.
           </p>
-        </div>
+        </Abertura>
 
         <ol className={styles.sumario} aria-label="Projetos desta seção">
           {PROJETOS_IA.map((projeto, indice) => (

@@ -1,4 +1,4 @@
-/* Navegação fixa no rodapé da tela, centralizada; a seção ativa aparece invertida. */
+/* Navegação fixa no rodapé da tela, centralizada; a seção ativa aparece invertida, em claro sobre o preto. */
 .navegacao {
   position: fixed;
   left: 50%;
@@ -7,10 +7,11 @@
   translate: -50% 0;
   max-width: calc(100vw - 32px);
   padding: 4px;
+  border: 1px solid var(--linha);
   border-radius: 3px;
-  background: color-mix(in srgb, var(--tinta) 92%, transparent);
+  background: color-mix(in srgb, var(--papel-elevado) 88%, transparent);
   backdrop-filter: blur(10px);
-  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.9);
 }
 
 .lista {
@@ -37,17 +38,17 @@
   text-transform: uppercase;
   white-space: nowrap;
   text-decoration: none;
-  color: color-mix(in srgb, var(--papel) 62%, transparent);
+  color: var(--tinta-suave);
   transition: background var(--rapido) ease, color var(--rapido) ease;
 }
 
 .item:hover {
-  color: var(--papel);
+  color: var(--tinta);
 }
 
 .item[aria-current] {
-  background: var(--papel);
-  color: var(--tinta);
+  background: var(--tinta);
+  color: var(--papel);
 }
 
 .item:focus-visible {
