@@ -19,6 +19,7 @@ flowchart LR
 - **Navegação fixa no rodapé.** Mostra a seção em que o visitante está; no celular a lista rola para o lado e mantém a seção ativa no centro.
 - **Acessível.** Os nós são botões navegáveis por teclado. Com `prefers-reduced-motion`, nada anima, nada fica preso e o exemplo da abertura não avança sozinho. O fundo é preto em qualquer tema do sistema.
 - **Sem bibliotecas de UI.** Next.js, React e CSS Modules. O realce de sintaxe é uma função de 60 linhas.
+- **Prévia ao compartilhar.** `opengraph-image.tsx` monta no build a imagem que aparece no LinkedIn, no WhatsApp e no X: foto, nome, cargo e o diagrama do princípio, nas fontes do site.
 
 Os trechos do projeto de RAG são cópias do [repositório público](https://github.com/marcusvilanova/rag-agentes-python). Os sistemas da Poiesis têm código privado: ali os trechos são reescritos para mostrar o padrão e aparecem marcados como ilustrativos. As fichas desses sistemas (`src/data/sistemas-poiesis.ts`) os descrevem pela função, sem nome interno, sem capturas de tela e sem dados de pessoas, fornecedores ou valores.
 
