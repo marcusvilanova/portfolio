@@ -1,7 +1,7 @@
 import type { Projeto } from './tipos'
 
 // Trechos "real" são cópias literais do repositório público rag-agentes-python.
-// Os projetos da Poiesis têm código privado: os trechos são reescritos para
+// Os projetos profissionais têm código privado: os trechos são reescritos para
 // mostrar o padrão e vêm marcados como "ilustrativo".
 
 const rag: Projeto = {
@@ -154,7 +154,7 @@ def buscar_trechos(
 const agenteTr: Projeto = {
   id: 'agente-tr',
   nome: 'Agente conversacional para Termos de Referência',
-  contexto: 'Poiesis · código privado',
+  contexto: 'Projeto profissional · código privado',
   resumo:
     'Assistente que ajuda a criar e acompanhar Termos de Referência de compras. O modelo escolhe ferramentas de consulta; quem decide aprovadores e status são as regras do sistema.',
   stack: ['TypeScript', 'Next.js', 'Groq · Llama 3.3 70B', 'Gemini', 'Supabase', 'Function calling'],
@@ -242,7 +242,7 @@ for (let passo = 0; passo < MAX_PASSOS; passo++) {
 const indicadores: Projeto = {
   id: 'indicadores',
   nome: 'Assistente de indicadores com camada semântica',
-  contexto: 'Poiesis · código privado',
+  contexto: 'Projeto profissional · código privado',
   resumo:
     'Chat, inclusive por voz, que responde perguntas sobre matrículas, cancelamentos, presença e evasão de programas culturais. O LLM só interpreta a pergunta; quem calcula é o código.',
   stack: ['Python', 'FastAPI', 'Pydantic', 'SQLite · libSQL', 'Redis', 'Gemini', 'Groq', 'ElevenLabs'],
@@ -320,7 +320,7 @@ const indicadores: Projeto = {
 const plataformaIa: Projeto = {
   id: 'plataforma-ia',
   nome: 'Camada de IA multi-provedor e automações',
-  contexto: 'Poiesis · código privado',
+  contexto: 'Projeto profissional · código privado',
   resumo:
     'Plataforma interna de TI e pessoas. Toda chamada de IA passa por um ponto único que escolhe o modelo pela tarefa e registra o uso; as automações rodam no n8n, mas os segredos ficam no sistema.',
   stack: ['TypeScript', 'Next.js', 'Supabase', 'Anthropic', 'Gemini', 'OpenAI', 'n8n'],

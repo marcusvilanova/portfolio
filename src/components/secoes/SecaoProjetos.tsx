@@ -17,7 +17,7 @@ export function SecaoProjetos() {
         >
           <p>
             Cada projeto aparece passo a passo, na ordem em que uma pergunta atravessa o sistema. Os trechos do RAG
-            vêm do repositório público; os sistemas da Poiesis têm código privado, então os trechos são reescritos
+            vêm do repositório público; os sistemas profissionais têm código privado, então os trechos são reescritos
             para mostrar o padrão.
           </p>
         </Abertura>

@@ -1,6 +1,6 @@
-import { LogoGithub, LogoLinkedin } from '@carbon/icons-react'
+import { Download, LogoGithub, LogoLinkedin } from '@carbon/icons-react'
 import { Declaracao } from '@/components/texto/Declaracao'
-import { CONTATO, FORMACAO, TRAJETORIA } from '@/data/outros'
+import { CONTATO, CURRICULO, FORMACAO, TRAJETORIA } from '@/data/outros'
 import styles from './SecaoTrajetoria.module.css'
 
 export function SecaoTrajetoria() {
@@ -54,6 +54,11 @@ export function Rodape() {
           <li>
             <a className="botao botao-terciario" href={CONTATO.github} target="_blank" rel="noreferrer">
               GitHub <LogoGithub size={16} />
+            </a>
+          </li>
+          <li>
+            <a className="botao botao-terciario" href={CURRICULO} download>
+              Currículo em PDF <Download size={16} className="seta-baixo" />
             </a>
           </li>
         </ul>

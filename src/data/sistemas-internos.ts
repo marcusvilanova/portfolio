@@ -1,11 +1,11 @@
-// Sistemas que Marcus construiu na Poiesis. O código é privado: cada ficha descreve o problema,
+// Sistemas que Marcus construiu no trabalho atual. O código é privado: cada ficha descreve o problema,
 // a arquitetura e o resultado, sem dados de pessoas, fornecedores ou valores.
 // Combinado com o Marcus (out/2026): os sistemas aparecem pela função, nunca pelo nome interno,
 // e o portal de fornecedores entra só com problema, stack e resultado, sem o desenho de segurança.
 
 import type { DadosDoDiagrama } from '@/components/diagrama/Diagrama'
 
-export interface SistemaPoiesis {
+export interface SistemaInterno {
   id: string
   nome: string
   area: string
@@ -25,7 +25,7 @@ function estatico(dados: Omit<DadosDoDiagrama, 'passos'>): DadosDoDiagrama {
   return { ...dados, passos: [{ titulo: '', texto: '', nos: dados.nos.map((no) => no.id), fluxo: [] }] }
 }
 
-const termos: SistemaPoiesis = {
+const termos: SistemaInterno = {
   id: 'termos-de-referencia',
   nome: 'Sistema de elaboração e aprovação de termos de referência',
   area: 'Compras',
@@ -71,7 +71,7 @@ const termos: SistemaPoiesis = {
   cena: { id: 'agente-tr', rotulo: 'Ver o agente conversacional passo a passo' },
 }
 
-const indicadores: SistemaPoiesis = {
+const indicadores: SistemaInterno = {
   id: 'indicadores',
   nome: 'Painel e assistente de indicadores de formação cultural',
   area: 'Programas culturais',
@@ -115,7 +115,7 @@ const indicadores: SistemaPoiesis = {
   cena: { id: 'indicadores', rotulo: 'Ver o assistente de indicadores passo a passo' },
 }
 
-const plataforma: SistemaPoiesis = {
+const plataforma: SistemaInterno = {
   id: 'plataforma-ti',
   nome: 'Plataforma interna de TI e pessoas',
   area: 'TI e pessoas',
@@ -137,7 +137,7 @@ const plataforma: SistemaPoiesis = {
   cena: { id: 'plataforma-ia', rotulo: 'Ver a camada de IA e as automações passo a passo' },
 }
 
-const orcamento: SistemaPoiesis = {
+const orcamento: SistemaInterno = {
   id: 'execucao-orcamentaria',
   nome: 'Painel executivo de execução orçamentária',
   area: 'Diretoria',
@@ -179,7 +179,7 @@ const orcamento: SistemaPoiesis = {
   }),
 }
 
-const fornecedores: SistemaPoiesis = {
+const fornecedores: SistemaInterno = {
   id: 'propostas-fornecedores',
   nome: 'Portal de propostas de fornecedores',
   area: 'Compras',
@@ -187,10 +187,10 @@ const fornecedores: SistemaPoiesis = {
   resumo:
     'Plataforma web em que fornecedores se cadastram, leem os chamamentos públicos e enviam propostas, e em que a equipe de compras conduz cada chamamento da publicação ao resultado.',
   problema:
-    'A Poiesis compra por chamamento público. Fornecedores de todo porte, muitos sem costume com sistemas, precisavam de um caminho único para se cadastrar, entender o edital e enviar a proposta dentro do prazo; a equipe de compras precisava receber tudo num lugar só.',
+    'A organização compra por chamamento público. Fornecedores de todo porte, muitos sem costume com sistemas, precisavam de um caminho único para se cadastrar, entender o edital e enviar a proposta dentro do prazo; a equipe de compras precisava receber tudo num lugar só.',
   stack: ['React', 'TypeScript', 'Vite', 'Supabase', 'Edge Functions · Deno', 'TanStack Query', 'IBM Carbon', 'i18next', 'Playwright', 'Vitest', 'Vercel'],
   resultado:
     'Chamamentos abertos numa página pública com o prazo de encerramento em destaque, cadastro guiado com consulta automática de CNPJ e CEP, envio da proposta em etapas e interface em português, inglês e espanhol. Testes de ponta a ponta cobrem cadastro, criação de edital e envio de proposta.',
 }
 
-export const SISTEMAS_POIESIS: SistemaPoiesis[] = [termos, indicadores, plataforma, orcamento, fornecedores]
+export const SISTEMAS_INTERNOS: SistemaInterno[] = [termos, indicadores, plataforma, orcamento, fornecedores]

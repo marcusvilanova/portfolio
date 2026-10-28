@@ -91,17 +91,17 @@ export const TRAJETORIA: MarcoDaTrajetoria[] = [
   },
   {
     periodo: '2022 – 2024',
-    onde: 'Fábricas de Cultura · Poiesis',
+    onde: 'Fábricas de Cultura',
     oQue: 'Recepção, monitoria e pedagógico: inscrições, cancelamentos e listas de espera, com liderança de equipe.',
   },
   {
     periodo: '2025',
-    onde: 'Desenvolvimento e Inovação em Tecnologia · Poiesis',
+    onde: 'Desenvolvimento e Inovação em Tecnologia',
     oQue: 'Entrada na equipe de tecnologia da sede.',
   },
   {
     periodo: 'mai. 2025 – hoje',
-    onde: 'Analista de Desenvolvimento de Sistemas · Poiesis',
+    onde: 'Analista de Desenvolvimento de Sistemas',
     oQue: 'Aplicações com IA generativa para compras, TI, pessoas e programas culturais.',
   },
 ]
@@ -117,4 +117,47 @@ export const FORMACAO = [
 export const CONTATO = {
   linkedin: 'https://www.linkedin.com/in/marcus-vin%C3%ADcius-vila-nova/',
   github: GITHUB,
+}
+
+/** Currículo em PDF, servido de public/. */
+export const CURRICULO = '/curriculo-marcus-vinicius-vila-nova.pdf'
+
+// Resumo profissional da seção "Sobre", no texto do Marcus, sem o nome da organização em que trabalha.
+export const RESUMO = {
+  trajetoria: [
+    'Comecei a carreira na ouvidoria de um hospital público municipal, em parceria com o Einstein. Atendia reclamações e denúncias, mediava situações de conflito e preparava os indicadores de produção que a gerência acompanhava no BI.',
+    'Em 2022 fui para as Fábricas de Cultura, programa cultural nos bairros periféricos de São Paulo, Diadema, Osasco e Iguape. Em dois anos e meio passei pela recepção, pela monitoria e pelo administrativo da unidade do Capão Redondo, cuidei de inscrições, cancelamentos e listas de espera e assumi posições de liderança nas equipes de recepção e monitoria.',
+    'Em 2025, fui convidado pela diretoria da organização que gere o programa para a equipe de desenvolvimento tecnológico. Hoje sou Analista de Desenvolvimento de Sistemas Pleno.',
+  ],
+  construido: [
+    'Agente conversacional que ajuda a criar e acompanhar Termos de Referência de compras, com function calling, 11 ferramentas de consulta e proteção contra prompt injection.',
+    'Assistente de indicadores em Python (FastAPI): o modelo interpreta a pergunta e uma camada semântica gera o SQL. O LLM não escreve consulta nem calcula valores.',
+    'Camada de IA multi-provedor (Anthropic, Gemini e OpenAI), com escolha de modelo por tarefa e registro de cada chamada, e automações em n8n integradas por API.',
+  ],
+  comoTrabalho:
+    'Uso IA no desenvolvimento (Claude Code com agentes, skills e servidores MCP) e dentro dos sistemas, com o mesmo princípio nos dois casos: o modelo interpreta e redige; as regras do sistema validam, calculam e decidem. Vejo a IA como parceira de pensamento, com o julgamento humano no centro.',
+  tecnologias: [
+    'Python',
+    'FastAPI',
+    'TypeScript',
+    'Next.js',
+    'React',
+    'SQL',
+    'PostgreSQL',
+    'pgvector',
+    'Redis',
+    'APIs REST',
+    'n8n',
+    'Claude',
+    'Gemini',
+    'Llama',
+    'GitHub Actions',
+    'Playwright',
+  ],
+  formacao: [
+    'Análise e Desenvolvimento de Sistemas · FIAP',
+    'Técnico em Administração · Etec Jardim Ângela',
+    'Agentes Autônomos (Agentic AI) · FIAP',
+    'AI Fluency · Anthropic',
+  ],
 }

@@ -5,7 +5,8 @@ import styles from './NavegacaoDeSecoes.module.css'
 
 const SECOES = [
   { id: 'inicio', rotulo: 'Início' },
-  { id: 'sistemas', rotulo: 'Poiesis' },
+  { id: 'sobre', rotulo: 'Sobre' },
+  { id: 'sistemas', rotulo: 'Sistemas' },
   { id: 'projetos', rotulo: 'Projetos de IA' },
   { id: 'nuvem', rotulo: 'Nuvem' },
   { id: 'clientes', rotulo: 'Sites' },

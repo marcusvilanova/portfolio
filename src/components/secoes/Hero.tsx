@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import { ArrowDown, LogoGithub, LogoLinkedin } from '@carbon/icons-react'
+import { ArrowDown, Download, LogoGithub, LogoLinkedin } from '@carbon/icons-react'
 import { Principio } from '@/components/hero/Principio'
-import { CONTATO } from '@/data/outros'
+import { CONTATO, CURRICULO } from '@/data/outros'
 import styles from './Hero.module.css'
 
 export function Hero() {
@@ -40,6 +40,11 @@ export function Hero() {
             <li>
               <a className="botao botao-primario" href="#sistemas">
                 Ver os projetos <ArrowDown size={16} className="seta-baixo" />
+              </a>
+            </li>
+            <li>
+              <a className="botao botao-terciario" href={CURRICULO} download>
+                Currículo em PDF <Download size={16} className="seta-baixo" />
               </a>
             </li>
             <li>

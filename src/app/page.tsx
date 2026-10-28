@@ -1,5 +1,6 @@
 import { Cabecalho } from '@/components/secoes/Cabecalho'
 import { Hero } from '@/components/secoes/Hero'
+import { SecaoSobre } from '@/components/secoes/SecaoSobre'
 import { SecaoSistemas } from '@/components/secoes/SecaoSistemas'
 import { SecaoProjetos } from '@/components/secoes/SecaoProjetos'
 import { SecaoNuvem } from '@/components/secoes/SecaoNuvem'
@@ -13,6 +14,7 @@ export default function Pagina() {
       <Cabecalho />
       <main>
         <Hero />
+        <SecaoSobre />
         <SecaoSistemas />
         <SecaoProjetos />
         <SecaoNuvem />
