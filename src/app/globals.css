@@ -196,11 +196,11 @@ pre {
 
     /*
      * Abertura presa: o bloco é mais alto que a tela e o palco fica fixo no centro enquanto ele passa.
-     * Em proporção do percurso todo (185vh + 100vh): o palco prende em ~35% e solta em ~65%.
-     * As palavras terminam logo depois de prender; a descrição aparece em seguida; resta uma pausa.
+     * Em proporção do percurso todo (125vh + 100vh): o palco prende em ~44% e solta em ~56%.
+     * As palavras terminam ao prender; a descrição sobe em seguida; resta uma pausa curta.
      */
     .abertura {
-      height: 185vh;
+      height: 125vh;
       view-timeline-name: --abertura;
     }
 
@@ -216,15 +216,16 @@ pre {
       margin-bottom: 0;
     }
 
+    /* Mesmo trecho da rolagem de antes (de ~34vh a ~105vh), agora em proporção de 225vh. */
     .abertura .declaracao .palavra {
       animation-timeline: --abertura;
-      animation-range: cover calc(12% + var(--p) * 16%) cover calc(21% + var(--p) * 16%);
+      animation-range: cover calc(15% + var(--p) * 20%) cover calc(26.5% + var(--p) * 20%);
     }
 
     .abertura .titulo-secao > p:not(.rotulo) {
       animation: subir linear both;
       animation-timeline: --abertura;
-      animation-range: cover 34% cover 44%;
+      animation-range: cover 40% cover 49%;
     }
 
     /* Blocos de conteúdo sobem de mais longe e se aproximam ao entrar na tela. */
