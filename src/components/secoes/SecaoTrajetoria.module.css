@@ -93,12 +93,11 @@
 
 .canais {
   display: flex;
-  gap: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
   margin: 32px 0 0;
   padding: 0;
   list-style: none;
-  font-family: var(--fonte-mono);
-  font-size: 16px;
 }
 
 @media (max-width: 860px) {

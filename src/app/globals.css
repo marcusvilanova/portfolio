@@ -1,31 +1,40 @@
 :root {
-  /* Fundo preto profundo com grade discreta, tinta clara e um único sinal laranja para o fluxo. */
-  --papel: #000000;
-  --papel-elevado: #0b0c0e;
-  --tinta: #eceef1;
-  --tinta-suave: #a9afb8;
-  --tinta-fraca: #7b818b;
-  --linha: #23272e;
-  --grade: rgba(236, 238, 241, 0.035);
-  --sinal: #ff7a3d;
-  --sinal-fraco: rgba(255, 122, 61, 0.16);
+  /* Tema g100 do Carbon (IBM): cinzas neutros e o azul da IBM como único sinal. */
+  --papel: #161616;
+  --papel-elevado: #262626;
+  --camada-hover: #333333;
+  --etiqueta: #393939;
+  --tinta: #f4f4f4;
+  --tinta-suave: #c6c6c6;
+  --tinta-fraca: #8d8d8d;
+  --linha: #393939;
+  --sinal: #4589ff;
+  --sinal-fraco: rgba(69, 137, 255, 0.16);
 
-  /* Tipos de nó do diagrama. */
-  --no-entrada: #1b1f25;
-  --no-entrada-borda: #8a919b;
-  --no-llm: #201a36;
-  --no-llm-borda: #9b7bff;
-  --no-regra: #0f2a24;
-  --no-regra-borda: #3cc49b;
-  --no-dados: #112233;
-  --no-dados-borda: #5aa2f0;
-  --no-ferramenta: #2e230d;
-  --no-ferramenta-borda: #e0a442;
-  --no-saida: #eceef1;
-  --no-saida-borda: #eceef1;
-  --no-saida-texto: #000000;
+  /* Botões, links e foco do Carbon. */
+  --botao: #0f62fe;
+  --botao-hover: #0050e6;
+  --botao-ativo: #002d9c;
+  --link: #78a9ff;
+  --link-hover: #a6c8ff;
+  --foco: #ffffff;
 
-  --fonte-display: var(--font-plex-serif), Georgia, serif;
+  /* Tipos de nó do diagrama, na paleta da IBM. */
+  --no-entrada: #262626;
+  --no-entrada-borda: #8d8d8d;
+  --no-llm: #31135e;
+  --no-llm-borda: #a56eff;
+  --no-regra: #022b30;
+  --no-regra-borda: #08bdba;
+  --no-dados: #012749;
+  --no-dados-borda: #33b1ff;
+  --no-ferramenta: #302400;
+  --no-ferramenta-borda: #f1c21b;
+  --no-saida: #f4f4f4;
+  --no-saida-borda: #f4f4f4;
+  --no-saida-texto: #161616;
+
+  --fonte-display: var(--font-plex-sans), system-ui, sans-serif;
   --fonte-texto: var(--font-plex-sans), system-ui, sans-serif;
   --fonte-mono: var(--font-plex-mono), ui-monospace, monospace;
 
@@ -34,8 +43,11 @@
   --secao: clamp(72px, 10vw, 140px);
 
   --ease-saida: cubic-bezier(0.16, 1, 0.3, 1);
-  --rapido: 160ms;
-  --normal: 420ms;
+  /* Curva "produtiva" do Carbon, para hover e mudanças de estado. */
+  --ease-carbon: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --rapido: 110ms;
+  --moderado: 240ms;
+  --normal: 400ms;
 
   color-scheme: dark;
 }
@@ -54,10 +66,6 @@ html {
 body {
   margin: 0;
   background-color: var(--papel);
-  background-image:
-    linear-gradient(var(--grade) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grade) 1px, transparent 1px);
-  background-size: 24px 24px;
   color: var(--tinta);
   font-family: var(--fonte-texto);
   font-size: 17px;
@@ -67,20 +75,22 @@ body {
   overflow-x: hidden;
 }
 
+/* Links do Carbon: azul claro, sublinhado só no hover. */
 a {
-  color: inherit;
-  text-decoration-color: var(--sinal);
+  color: var(--link);
+  text-decoration: none;
   text-underline-offset: 3px;
-  transition: color var(--rapido) ease;
+  transition: color var(--rapido) var(--ease-carbon);
 }
 
 a:hover {
-  color: var(--sinal);
+  color: var(--link-hover);
+  text-decoration: underline;
 }
 
 :focus-visible {
-  outline: 2px solid var(--sinal);
-  outline-offset: 3px;
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
 }
 
 h1,
@@ -92,12 +102,12 @@ h3 {
   font-weight: 600;
 }
 
-/* Declarações em serifada; títulos de projeto e de cartão seguem em sans. */
+/* Declarações em Plex Sans leve, como os títulos grandes do Carbon; títulos de projeto e de cartão em regular. */
 h1,
 h2 {
   font-family: var(--fonte-display);
-  font-weight: 400;
-  letter-spacing: -0.025em;
+  font-weight: 300;
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -117,11 +127,10 @@ pre {
 }
 
 .rotulo {
-  font-family: var(--fonte-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--tinta-fraca);
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0.16px;
+  color: var(--tinta-suave);
 }
 
 .pilha {
@@ -133,15 +142,91 @@ pre {
   list-style: none;
 }
 
+/* Etiqueta cinza do Carbon. */
 .pilha li {
-  font-family: var(--fonte-mono);
   font-size: 12px;
-  line-height: 1.5;
-  padding: 2px 8px;
-  border: 1px solid var(--linha);
-  background: var(--papel-elevado);
-  border-radius: 2px;
-  color: var(--tinta-suave);
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  padding: 4px 8px;
+  border-radius: 1rem;
+  background: var(--etiqueta);
+  color: #e0e0e0;
+}
+
+/* Botão do Carbon: retângulo de 48px, texto à esquerda e ícone à direita. */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  text-decoration: none;
+  transition:
+    background-color var(--rapido) var(--ease-carbon),
+    border-color var(--rapido) var(--ease-carbon),
+    color var(--rapido) var(--ease-carbon);
+}
+
+.botao:hover {
+  text-decoration: none;
+}
+
+.botao-primario,
+.botao-primario:hover {
+  color: #ffffff;
+}
+
+.botao-primario {
+  background: var(--botao);
+}
+
+.botao-primario:hover {
+  background: var(--botao-hover);
+}
+
+.botao-primario:active {
+  background: var(--botao-ativo);
+}
+
+.botao-terciario {
+  border-color: var(--tinta);
+  color: var(--tinta);
+}
+
+.botao-terciario:hover {
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+.link-icone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* No hover, o ícone anda um pouco na direção em que o link leva. */
+.seta-baixo,
+.seta-direita,
+.abrir {
+  flex: none;
+  transition: translate var(--rapido) var(--ease-carbon);
+}
+
+a:hover .seta-baixo {
+  translate: 0 3px;
+}
+
+a:hover .seta-direita {
+  translate: 3px 0;
+}
+
+a:hover .abrir {
+  translate: 2px -2px;
 }
 
 .titulo-secao {

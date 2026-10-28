@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { ArrowDown, Launch } from '@carbon/icons-react'
 import type { Projeto } from '@/data/tipos'
 import { Diagrama } from '@/components/diagrama/Diagrama'
 import { Legenda } from '@/components/diagrama/Legenda'
@@ -53,8 +54,8 @@ export function CenaProjeto({ projeto, numero, total, proximo }: Props) {
           ))}
         </ul>
         {projeto.link && (
-          <a className={styles.link} href={projeto.link.url} target="_blank" rel="noreferrer">
-            {projeto.link.rotulo} ↗
+          <a className={`${styles.link} link-icone`} href={projeto.link.url} target="_blank" rel="noreferrer">
+            {projeto.link.rotulo} <Launch size={16} className="abrir" />
           </a>
         )}
       </header>
@@ -76,8 +77,8 @@ export function CenaProjeto({ projeto, numero, total, proximo }: Props) {
                   />
                 ))}
               </ol>
-              <a className={styles.pular} href={proximo.href} aria-label={`Pular para ${proximo.rotulo}`}>
-                Pular ↓
+              <a className={`${styles.pular} link-icone`} href={proximo.href} aria-label={`Pular para ${proximo.rotulo}`}>
+                Pular <ArrowDown size={16} className="seta-baixo" />
               </a>
             </div>
             <div className={styles.tela}>

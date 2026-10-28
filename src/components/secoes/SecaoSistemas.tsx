@@ -1,3 +1,4 @@
+import { ArrowDown } from '@carbon/icons-react'
 import { Diagrama } from '@/components/diagrama/Diagrama'
 import { Abertura } from '@/components/texto/Abertura'
 import { SISTEMAS_POIESIS } from '@/data/sistemas-poiesis'
@@ -73,8 +74,8 @@ export function SecaoSistemas() {
               )}
 
               {sistema.cena && (
-                <a className={styles.aprofundar} href={`#cena-${sistema.cena.id}`}>
-                  {sistema.cena.rotulo} ↓
+                <a className={`${styles.aprofundar} botao botao-terciario`} href={`#cena-${sistema.cena.id}`}>
+                  {sistema.cena.rotulo} <ArrowDown size={16} className="seta-baixo" />
                 </a>
               )}
             </li>

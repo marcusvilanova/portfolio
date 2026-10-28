@@ -23,28 +23,37 @@
   white-space: nowrap;
 }
 
+.marca,
+.marca:hover {
+  color: var(--tinta);
+  text-decoration: none;
+}
+
 .marca span {
   color: var(--sinal);
 }
 
 .perfis {
   display: flex;
-  gap: clamp(14px, 2vw, 28px);
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: var(--fonte-mono);
-  font-size: 13px;
 }
 
 .perfis a {
-  text-decoration: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
   color: var(--tinta-suave);
-  white-space: nowrap;
+  transition:
+    background-color var(--rapido) var(--ease-carbon),
+    color var(--rapido) var(--ease-carbon);
 }
 
 .perfis a:hover {
-  color: var(--sinal);
+  background: var(--camada-hover);
+  color: var(--tinta);
 }
 
 /* Linha de progresso da leitura, presa à rolagem da página. Sem suporte, não aparece. */

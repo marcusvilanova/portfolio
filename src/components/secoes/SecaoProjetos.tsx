@@ -1,3 +1,4 @@
+import { ArrowDown } from '@carbon/icons-react'
 import { CenaProjeto } from '@/components/cena/CenaProjeto'
 import { Abertura } from '@/components/texto/Abertura'
 import { PROJETOS_IA } from '@/data/projetos-ia'
@@ -28,6 +29,7 @@ export function SecaoProjetos() {
                 <span className={styles.numero}>{dois(indice + 1)}</span>
                 <span className={styles.nome}>{projeto.nome}</span>
                 <span className={styles.contexto}>{projeto.contexto}</span>
+                <ArrowDown size={20} className={`seta-baixo ${styles.seta}`} />
               </a>
             </li>
           ))}

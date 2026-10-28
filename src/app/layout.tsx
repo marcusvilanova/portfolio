@@ -1,18 +1,12 @@
 import type { Metadata } from 'next'
-import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from 'next/font/google'
+import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import './globals.css'
 
-// Serifada só nas declarações grandes; o corpo continua em sans e os rótulos em mono.
-const plexSerif = IBM_Plex_Serif({
-  variable: '--font-plex-serif',
-  subsets: ['latin'],
-  weight: ['400', '500'],
-})
-
+// Tudo em Plex Sans, como no Carbon: leve (300) nos títulos grandes, regular no corpo; rótulos em mono.
 const plexSans = IBM_Plex_Sans({
   variable: '--font-plex-sans',
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['300', '400', '500', '600'],
 })
 
 const plexMono = IBM_Plex_Mono({
@@ -44,7 +38,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="pt-BR" className={`${plexSerif.variable} ${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="pt-BR" className={`${plexSans.variable} ${plexMono.variable}`}>
       <body>{children}</body>
     </html>
   )

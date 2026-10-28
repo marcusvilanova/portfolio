@@ -9,28 +9,28 @@ export const alt = 'Marcus Vinícius Vila Nova · Analista de Sistemas · IA gen
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-// Mesmas cores de globals.css.
+// Mesmas cores de globals.css (tema g100 do Carbon).
 const COR = {
-  papel: '#000000',
-  tinta: '#eceef1',
-  tintaSuave: '#a9afb8',
-  tintaFraca: '#7b818b',
-  linha: '#23272e',
-  sinal: '#ff7a3d',
+  papel: '#161616',
+  tinta: '#f4f4f4',
+  tintaSuave: '#c6c6c6',
+  tintaFraca: '#8d8d8d',
+  linha: '#393939',
+  sinal: '#4589ff',
 }
 
-const ROTULO = 'ANALISTA DE SISTEMAS · IA GENERATIVA APLICADA · SÃO PAULO'
+const ROTULO = 'Analista de Sistemas · IA generativa aplicada · São Paulo'
 const NOME = ['Marcus Vinícius', 'Vila Nova']
 const GANCHO = 'Agentes, chatbots e RAG integrados a sistemas reais.'
-const LEGENDA = 'O PRINCÍPIO DE TODOS OS PROJETOS'
+const LEGENDA = 'O princípio de todos os projetos'
 
-// O princípio do diagrama do topo do site; a aresta "JSON" é a ativa, em laranja.
+// O princípio do diagrama do topo do site; a aresta "JSON" é a ativa, em azul.
 const NOS = [
-  { rotulo: 'Pergunta', sub: 'texto livre', fundo: '#1b1f25', borda: '#8a919b' },
-  { rotulo: 'LLM interpreta', sub: 'intenção estruturada', fundo: '#201a36', borda: '#9b7bff' },
-  { rotulo: 'Regras validam', sub: 'catálogo, permissão', fundo: '#0f2a24', borda: '#3cc49b' },
-  { rotulo: 'Código executa', sub: 'SQL, ferramentas', fundo: '#0f2a24', borda: '#3cc49b' },
-  { rotulo: 'LLM redige', sub: 'cita as fontes', fundo: '#201a36', borda: '#9b7bff' },
+  { rotulo: 'Pergunta', sub: 'texto livre', fundo: '#262626', borda: '#8d8d8d' },
+  { rotulo: 'LLM interpreta', sub: 'intenção estruturada', fundo: '#31135e', borda: '#a56eff' },
+  { rotulo: 'Regras validam', sub: 'catálogo, permissão', fundo: '#022b30', borda: '#08bdba' },
+  { rotulo: 'Código executa', sub: 'SQL, ferramentas', fundo: '#022b30', borda: '#08bdba' },
+  { rotulo: 'LLM redige', sub: 'cita as fontes', fundo: '#31135e', borda: '#a56eff' },
 ]
 const ARESTAS = [
   { rotulo: '', ativa: false },
@@ -48,16 +48,16 @@ const foto = await readFile(join(process.cwd(), 'public/marcus-vila-nova.jpg'), 
 type Fontes = NonNullable<ConstructorParameters<typeof ImageResponse>[1]>['fonts']
 
 async function carregarFontes(): Promise<Fontes> {
-  const mono = [ROTULO, LEGENDA, ...NOS.map((no) => no.sub), ...ARESTAS.map((aresta) => aresta.rotulo)].join('')
+  const mono = [...NOS.map((no) => no.sub), ...ARESTAS.map((aresta) => aresta.rotulo)].join('')
   try {
-    const [serif, sans, sansForte, monoNormal] = await Promise.all([
-      carregarFonteDoGoogle('IBM Plex Serif', 400, NOME.join('')),
-      carregarFonteDoGoogle('IBM Plex Sans', 400, GANCHO),
+    const [sansLeve, sans, sansForte, monoNormal] = await Promise.all([
+      carregarFonteDoGoogle('IBM Plex Sans', 300, NOME.join('')),
+      carregarFonteDoGoogle('IBM Plex Sans', 400, GANCHO + ROTULO + LEGENDA),
       carregarFonteDoGoogle('IBM Plex Sans', 600, NOS.map((no) => no.rotulo).join('')),
       carregarFonteDoGoogle('IBM Plex Mono', 400, mono),
     ])
     return [
-      { name: 'Plex Serif', data: serif, weight: 400, style: 'normal' },
+      { name: 'Plex Sans', data: sansLeve, weight: 300, style: 'normal' },
       { name: 'Plex Sans', data: sans, weight: 400, style: 'normal' },
       { name: 'Plex Sans', data: sansForte, weight: 600, style: 'normal' },
       { name: 'Plex Mono', data: monoNormal, weight: 400, style: 'normal' },
@@ -81,37 +81,11 @@ export default async function ImagemDeCompartilhamento() {
           justifyContent: 'space-between',
           padding: '60px 64px 56px',
           backgroundColor: COR.papel,
-          backgroundImage:
-            'linear-gradient(rgba(236, 238, 241, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(236, 238, 241, 0.05) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
           color: COR.tinta,
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontFamily: 'Plex Mono', fontSize: 16, letterSpacing: 1.3, color: COR.tintaFraca }}>
-              {ROTULO}
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginTop: 28,
-                fontFamily: 'Plex Serif',
-                fontSize: 104,
-                lineHeight: 0.95,
-                letterSpacing: -4.2,
-              }}
-            >
-              {NOME.map((linha) => (
-                <div key={linha}>{linha}</div>
-              ))}
-            </div>
-            <div style={{ marginTop: 28, fontFamily: 'Plex Sans', fontSize: 26, color: COR.tintaSuave }}>
-              {GANCHO}
-            </div>
-          </div>
-
+        {/* Como no site: a foto vem antes do nome, porque nela você olha para a direita. */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 48 }}>
           <div
             style={{
               display: 'flex',
@@ -125,16 +99,41 @@ export default async function ImagemDeCompartilhamento() {
             {/* eslint-disable-next-line @next/next/no-img-element -- next/og só aceita <img> */}
             <img src={`data:image/jpeg;base64,${foto}`} width={300} height={300} style={{ objectFit: 'cover' }} alt="" />
           </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ fontFamily: 'Plex Sans', fontSize: 20, letterSpacing: 0.2, color: COR.tintaSuave }}>
+              {ROTULO}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: 24,
+                fontFamily: 'Plex Sans',
+                fontWeight: 300,
+                fontSize: 88,
+                lineHeight: 1,
+                letterSpacing: -2.2,
+              }}
+            >
+              {NOME.map((linha) => (
+                <div key={linha}>{linha}</div>
+              ))}
+            </div>
+            <div style={{ marginTop: 26, fontFamily: 'Plex Sans', fontSize: 26, color: COR.tintaSuave }}>
+              {GANCHO}
+            </div>
+          </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div
             style={{
               marginBottom: 16,
-              fontFamily: 'Plex Mono',
-              fontSize: 13,
-              letterSpacing: 1,
-              color: COR.tintaFraca,
+              fontFamily: 'Plex Sans',
+              fontSize: 15,
+              letterSpacing: 0.2,
+              color: COR.tintaSuave,
             }}
           >
             {LEGENDA}
@@ -172,7 +171,7 @@ export default async function ImagemDeCompartilhamento() {
   )
 }
 
-/** Seta entre dois nós, com o rótulo por cima; a ativa leva o pacote laranja, como no site. */
+/** Seta entre dois nós, com o rótulo por cima; a ativa leva o pacote azul, como no site. */
 function Aresta({ rotulo, ativa }: { rotulo: string; ativa: boolean }) {
   const cor = ativa ? COR.sinal : COR.tintaFraca
   const fim = LARGURA_ARESTA - 6

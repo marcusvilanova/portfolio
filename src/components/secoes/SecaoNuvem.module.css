@@ -19,12 +19,22 @@
   grid-column: 1 / -1;
 }
 
+/* Cartão inteiro clicável, como os de case do ibm.com: no hover clareia e ganha contorno azul. */
 .item {
+  position: relative;
   display: grid;
   gap: 16px;
   align-content: start;
   padding: clamp(20px, 3vw, 36px);
   background: var(--papel-elevado);
+  transition:
+    background-color var(--rapido) var(--ease-carbon),
+    box-shadow var(--rapido) var(--ease-carbon);
+}
+
+.item:hover {
+  background: var(--camada-hover);
+  box-shadow: inset 0 0 0 1px var(--sinal);
 }
 
 .cabeca {
@@ -84,8 +94,13 @@
 }
 
 .link {
-  font-family: var(--fonte-mono);
   font-size: 14px;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 @media (max-width: 800px) {

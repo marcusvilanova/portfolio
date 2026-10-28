@@ -1,3 +1,4 @@
+import { Launch, LogoGithub } from '@carbon/icons-react'
 import { Abertura } from '@/components/texto/Abertura'
 import { SITES_CLIENTES } from '@/data/outros'
 import styles from './SecaoClientes.module.css'
@@ -26,11 +27,12 @@ export function SecaoClientes() {
                 ))}
               </ul>
               <div className={styles.links}>
-                <a href={site.noAr} target="_blank" rel="noreferrer">
-                  Ver o site ↗
+                {/* "Ver o site" cobre o cartão inteiro; "Código" fica por cima dele. */}
+                <a className={`${styles.principal} link-icone`} href={site.noAr} target="_blank" rel="noreferrer">
+                  Ver o site <Launch size={16} className="abrir" />
                 </a>
-                <a href={site.repositorio} target="_blank" rel="noreferrer">
-                  Código ↗
+                <a className={`${styles.codigo} link-icone`} href={site.repositorio} target="_blank" rel="noreferrer">
+                  Código <LogoGithub size={16} />
                 </a>
               </div>
             </li>

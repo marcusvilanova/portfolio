@@ -1,4 +1,4 @@
-/* Navegação fixa no rodapé da tela, centralizada; a seção ativa aparece invertida, em claro sobre o preto. */
+/* Navegação fixa no rodapé da tela, como o seletor de conteúdo do Carbon: a seção ativa aparece invertida. */
 .navegacao {
   position: fixed;
   left: 50%;
@@ -6,17 +6,14 @@
   z-index: 20;
   translate: -50% 0;
   max-width: calc(100vw - 32px);
-  padding: 4px;
   border: 1px solid var(--linha);
-  border-radius: 3px;
-  background: color-mix(in srgb, var(--papel-elevado) 88%, transparent);
+  background: color-mix(in srgb, var(--papel-elevado) 92%, transparent);
   backdrop-filter: blur(10px);
   box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.9);
 }
 
 .lista {
   display: flex;
-  gap: 2px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -30,20 +27,21 @@
 
 .item {
   display: block;
-  padding: 7px 12px;
-  border-radius: 2px;
-  font-family: var(--fonte-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  padding: 10px 16px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.16px;
   white-space: nowrap;
-  text-decoration: none;
   color: var(--tinta-suave);
-  transition: background var(--rapido) ease, color var(--rapido) ease;
+  transition:
+    background-color var(--rapido) var(--ease-carbon),
+    color var(--rapido) var(--ease-carbon);
 }
 
 .item:hover {
+  background: var(--camada-hover);
   color: var(--tinta);
+  text-decoration: none;
 }
 
 .item[aria-current] {

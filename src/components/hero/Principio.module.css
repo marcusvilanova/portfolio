@@ -6,7 +6,7 @@
   border-radius: 4px;
   box-shadow:
     0 1px 0 var(--linha),
-    0 32px 64px -40px rgba(21, 24, 29, 0.4);
+    0 32px 64px -40px rgba(0, 0, 0, 0.5);
 }
 
 .topo {
@@ -64,14 +64,14 @@
   padding: 12px 14px;
   border: 1px solid var(--linha);
   border-radius: 3px;
-  background: #07080a;
-  color: #d7dbe0;
+  background: #0f0f0f;
+  color: #e0e0e0;
   font-size: 13.5px;
   overflow-x: auto;
 }
 
 .prompt {
-  color: #ff7a3d;
+  color: var(--sinal);
   font-family: var(--fonte-mono);
 }
 

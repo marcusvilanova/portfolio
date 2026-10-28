@@ -1,3 +1,4 @@
+import { LogoGithub, LogoLinkedin } from '@carbon/icons-react'
 import { Declaracao } from '@/components/texto/Declaracao'
 import { CONTATO, FORMACAO, TRAJETORIA } from '@/data/outros'
 import styles from './SecaoTrajetoria.module.css'
@@ -46,13 +47,13 @@ export function Rodape() {
         <Declaracao className="declaracao-final" texto="Vamos conversar sobre IA em sistemas reais." />
         <ul className={styles.canais}>
           <li>
-            <a href={CONTATO.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn ↗
+            <a className="botao botao-primario" href={CONTATO.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn <LogoLinkedin size={16} />
             </a>
           </li>
           <li>
-            <a href={CONTATO.github} target="_blank" rel="noreferrer">
-              GitHub ↗
+            <a className="botao botao-terciario" href={CONTATO.github} target="_blank" rel="noreferrer">
+              GitHub <LogoGithub size={16} />
             </a>
           </li>
         </ul>

@@ -2,8 +2,8 @@
   margin: 8px 0 0;
   border: 1px solid var(--linha);
   border-radius: 4px;
-  background: #07080a;
-  color: #d7dbe0;
+  background: #0f0f0f;
+  color: #e0e0e0;
   overflow: hidden;
 }
 
@@ -12,14 +12,14 @@
   justify-content: space-between;
   gap: 12px;
   padding: 8px 12px;
-  border-bottom: 1px solid #2a3038;
+  border-bottom: 1px solid var(--linha);
   font-family: var(--fonte-mono);
   font-size: 11.5px;
-  color: #8a919b;
+  color: var(--tinta-fraca);
 }
 
 .linguagem {
-  color: #ff7a3d;
+  color: var(--sinal);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -53,22 +53,22 @@
   left: 0;
   width: 30px;
   text-align: right;
-  color: #4b525c;
+  color: #6f6f6f;
 }
 
 .comentario {
-  color: #7d8590;
+  color: #8d8d8d;
   font-style: italic;
 }
 
 .texto {
-  color: #a5d6a7;
+  color: #6fdc8c;
 }
 
 .numero {
-  color: #f0b86e;
+  color: #f1c21b;
 }
 
 .palavra {
-  color: #b39dff;
+  color: #be95ff;
 }

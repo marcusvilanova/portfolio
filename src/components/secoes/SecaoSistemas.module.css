@@ -129,8 +129,6 @@
 
 .aprofundar {
   justify-self: start;
-  font-family: var(--fonte-mono);
-  font-size: 14px;
 }
 
 @media (max-width: 900px) {

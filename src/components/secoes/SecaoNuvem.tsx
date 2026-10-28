@@ -1,3 +1,4 @@
+import { Launch } from '@carbon/icons-react'
 import { Abertura } from '@/components/texto/Abertura'
 import { PROJETOS_NUVEM } from '@/data/outros'
 import styles from './SecaoNuvem.module.css'
@@ -33,8 +34,9 @@ export function SecaoNuvem() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <a href={projeto.repositorio} target="_blank" rel="noreferrer" className={styles.link}>
-                  Repositório ↗
+                {/* O link cobre o cartão inteiro (ver .link::after). */}
+                <a href={projeto.repositorio} target="_blank" rel="noreferrer" className={`${styles.link} link-icone`}>
+                  Ver o repositório <Launch size={16} className="abrir" />
                 </a>
               </div>
             </li>

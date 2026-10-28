@@ -2,27 +2,21 @@
   padding: clamp(56px, 10vw, 136px) 0 var(--secao);
 }
 
-/* Texto à esquerda e foto à direita, alinhada com a borda direita do diagrama logo abaixo. */
-.topo {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(32px, 5vw, 72px);
-  margin-bottom: clamp(48px, 7vw, 88px);
-}
-
 .texto {
+  /* O tamanho do nome também dá o tamanho da foto ao lado dele. */
+  --tamanho-nome: clamp(40px, 5.2vw, 72px);
   display: grid;
   gap: 24px;
+  margin-bottom: clamp(48px, 7vw, 88px);
   max-width: 960px;
 }
 
-/* Abertura: o rótulo, a descrição e as ações sobem em sequência ao carregar; o nome vem por máscara. */
+/* Abertura: o rótulo, a descrição e as ações sobem em sequência ao carregar; o nome vem por máscara e a foto se revela. */
 .texto > * {
   animation: entrar 900ms var(--ease-saida) both;
 }
 
-.texto > h1 {
+.texto > .identidade {
   animation: none;
 }
 
@@ -43,6 +37,13 @@
     opacity: 1;
     translate: none;
   }
+}
+
+/* Foto e nome lado a lado: na foto você olha para a direita, então ela vem antes do nome. */
+.identidade {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
 }
 
 /* A folga embaixo da máscara não corta descendentes nem acentos. */
@@ -71,9 +72,10 @@
   }
 }
 
-/* A foto se revela de baixo para cima, como o nome, e a imagem se assenta enquanto aparece. */
+/* A foto tem a altura das duas linhas do nome. Revela-se de baixo para cima, como ele, e a imagem se assenta ao aparecer. */
 .retrato {
-  width: clamp(200px, 20vw, 260px);
+  flex: none;
+  width: calc(var(--tamanho-nome) * 2);
   aspect-ratio: 1;
   overflow: hidden;
   border: 1px solid var(--linha);
@@ -108,10 +110,10 @@
   }
 }
 
-/* Ao rolar, o texto e a foto do hero se afastam: sobem, perdem foco e diminuem, dando profundidade à passagem. */
+/* Ao rolar, o topo do hero se afasta: sobe, perde foco e diminui, dando profundidade à passagem. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .topo {
+    .texto {
       transform-origin: left center;
       animation: afastar linear both;
       animation-timeline: view();
@@ -130,9 +132,9 @@
 }
 
 .texto h1 {
-  font-size: clamp(54px, 10vw, 140px);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  font-size: var(--tamanho-nome);
+  line-height: 1;
+  letter-spacing: -0.025em;
 }
 
 .gancho {
@@ -145,42 +147,21 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px 24px;
+  gap: 16px;
   margin: 8px 0 0;
   padding: 0;
   list-style: none;
-  font-family: var(--fonte-mono);
-  font-size: 14px;
 }
 
-.primaria {
-  display: inline-block;
-  padding: 10px 16px;
-  background: var(--tinta);
-  color: var(--papel);
-  text-decoration: none;
-  border-radius: 2px;
-  transition: background var(--rapido) ease, transform var(--rapido) ease;
-}
-
-.primaria:hover {
-  background: var(--sinal);
-  color: var(--papel);
-}
-
-.primaria:active {
-  transform: translateY(1px);
-}
-
-/* No celular a foto sobe para antes do texto, menor. */
-@media (max-width: 860px) {
-  .topo {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 28px;
+/* No celular a foto fica acima do nome, para ele caber em duas linhas. */
+@media (max-width: 560px) {
+  .identidade {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
 
   .retrato {
-    order: -1;
-    width: 96px;
+    width: 88px;
   }
 }

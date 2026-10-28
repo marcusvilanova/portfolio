@@ -1,55 +1,72 @@
-/* Sumário: atalho para cada projeto antes das cenas longas. */
+/* Sumário em blocos, como os do ibm.com: no hover o bloco se enche de azul e a seta desce. */
 .sumario {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
   margin: 0 0 clamp(24px, 4vw, 48px);
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--tinta);
 }
 
 .sumario a {
-  display: grid;
-  grid-template-columns: 3.5ch minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--linha);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 184px;
+  padding: 16px 16px 56px;
+  background: var(--papel-elevado);
+  color: var(--tinta);
   text-decoration: none;
-  transition: padding var(--normal) var(--ease-saida), color var(--rapido) ease;
+  transition: background-color var(--moderado) var(--ease-carbon);
 }
 
 .sumario a:hover {
-  padding-left: 10px;
+  background: var(--botao);
+  color: #ffffff;
+  text-decoration: none;
 }
 
-.numero {
-  font-family: var(--fonte-mono);
-  font-size: 13px;
-  color: var(--sinal);
+.numero,
+.contexto {
+  font-size: 14px;
+  letter-spacing: 0.16px;
+  color: var(--tinta-suave);
+  transition: color var(--moderado) var(--ease-carbon);
 }
 
 .nome {
-  font-size: clamp(18px, 1.8vw, 22px);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: 20px;
+  line-height: 1.3;
 }
 
-.contexto {
-  font-family: var(--fonte-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--tinta-fraca);
-  white-space: nowrap;
+.seta {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  color: var(--link);
 }
 
-@media (max-width: 700px) {
-  .sumario a {
-    grid-template-columns: 3.5ch minmax(0, 1fr);
-    row-gap: 4px;
+.sumario a:hover .numero,
+.sumario a:hover .contexto,
+.sumario a:hover .seta {
+  color: #ffffff;
+}
+
+@media (max-width: 960px) {
+  .sumario {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .sumario {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
   }
 
-  .contexto {
-    grid-column: 2;
-    white-space: normal;
+  .sumario a {
+    min-height: 0;
   }
 }
