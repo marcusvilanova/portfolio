@@ -2,10 +2,18 @@
   padding: clamp(56px, 10vw, 136px) 0 var(--secao);
 }
 
+/* Texto à esquerda e foto à direita, alinhada com a borda direita do diagrama logo abaixo. */
+.topo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+  margin-bottom: clamp(48px, 7vw, 88px);
+}
+
 .texto {
   display: grid;
   gap: 24px;
-  margin-bottom: clamp(48px, 7vw, 88px);
   max-width: 960px;
 }
 
@@ -63,10 +71,47 @@
   }
 }
 
-/* Ao rolar, o texto do hero se afasta: sobe, perde foco e diminui, dando profundidade à passagem. */
+/* A foto se revela de baixo para cima, como o nome, e a imagem se assenta enquanto aparece. */
+.retrato {
+  width: clamp(200px, 20vw, 260px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  border-radius: 3px;
+  background: var(--papel-elevado);
+  animation: revelar-retrato 1100ms var(--ease-saida) 200ms both;
+}
+
+.retrato img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: assentar 1600ms var(--ease-saida) 200ms both;
+}
+
+@keyframes revelar-retrato {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes assentar {
+  from {
+    scale: 1.12;
+  }
+  to {
+    scale: none;
+  }
+}
+
+/* Ao rolar, o texto e a foto do hero se afastam: sobem, perdem foco e diminuem, dando profundidade à passagem. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .texto {
+    .topo {
       transform-origin: left center;
       animation: afastar linear both;
       animation-timeline: view();
@@ -125,4 +170,17 @@
 
 .primaria:active {
   transform: translateY(1px);
+}
+
+/* No celular a foto sobe para antes do texto, menor. */
+@media (max-width: 860px) {
+  .topo {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 28px;
+  }
+
+  .retrato {
+    order: -1;
+    width: 96px;
+  }
 }
